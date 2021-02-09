@@ -64,6 +64,12 @@
 						<stop stop-color="red" offset="80%" />
 						<stop stop-color="red" offset="100%" />
 					</linearGradient>
+					<linearGradient id="mickey" spreadMethod="pad" id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+						<stop stop-color="black" offset="0%" />
+						<stop stop-color="black" offset="50%" />
+						<stop stop-color="red" offset="50%" />
+						<stop stop-color="red" offset="100%" />
+					</linearGradient>
 				</defs>
 				<g id="s">
 					<path
@@ -168,27 +174,21 @@
 			</svg>
 		</header>
 		<div class="buttons">
-			<button onclick="changeRed()">Red Star</button>
-			<button onclick="changeBlue()">Blue Star</button>
-			<button onclick="changeGreen()">Green Star</button>
+			<button onclick="earthDay()">Earth Day</button>
+			<button onclick="thanksgiving()">Thanksgiving</button>
+			<button onclick="mickey()">Mickey</button>
 			<button onclick="changeXMas()">X-Mas</button>
 			<button onclick="fourthJuly()">4th of July</button>
 			<button onclick="halloween()">Halloween</button>
 		</div>
 		<script>
-			function changeRed() {
-				document.querySelector('#star-path').style.fill = 'red';
-			}
-			function changeBlue() {
-				document.querySelector('#star-path').style.fill = 'blue';
-			}
 			function changeGreen() {
 				document.querySelector('#star-path').style.fill = 'green';
 			}
 			function changeXMas() {
-				document.querySelector('#let1').style.color = 'red';
-				document.querySelector('#let2').style.color = 'green';
-				document.querySelector('#let3').style.color = 'red';
+				document.querySelector('#let1').style = 'color: red;';
+				document.querySelector('#let2').style = 'color: green;';
+				document.querySelector('#let3').style = 'color: red;';
 				document.querySelector('#star-path').style.fill = 'gold';
 				document.querySelector('#streak-path').style.fill = 'url(#xmas)';
 				document.querySelector('#s-path').style.fill = 'red';
@@ -201,10 +201,28 @@
 				document.querySelector('#x-bottom-path').style.fill = 'green';
 				document.querySelector('#x-top-path').style.fill = 'green';
 			}
+
+			function earthDay() {
+				document.querySelector('#let1').style = 'color: #56A5D2;';
+				document.querySelector('#let2').style = 'color: #78B843;';
+				document.querySelector('#let3').style = 'color: #56A5D2;';
+				document.querySelector('#star-path').style.fill = 'gold';
+				document.querySelector('#streak-path').style.fill = 'gold';
+				document.querySelector('#s-path').style.fill = '#56A5D2';
+				document.querySelector('#h-path').style.fill = '#78B843';
+				document.querySelector('#i-path').style.fill = '#56A5D2';
+				document.querySelector('#f-bottom-path').style.fill = '#78B843';
+				document.querySelector('#f-top-path').style.fill = '#78B843';
+				document.querySelector('#t-bottom-path').style.fill = '#56A5D2';
+				document.querySelector('#t-top-path').style.fill = '#56A5D2';
+				document.querySelector('#x-bottom-path').style.fill = '#78B843';
+				document.querySelector('#x-top-path').style.fill = '#78B843';
+			}
+
 			function fourthJuly() {
-				document.querySelector('#let1').style.color = 'blue';
-				document.querySelector('#let2').style.color = 'blue';
-				document.querySelector('#let3').style.color = 'blue';
+				document.querySelector('#let1').style = 'color: blue;';
+				document.querySelector('#let2').style = 'color: blue;';
+				document.querySelector('#let3').style = 'color: blue;';
 				document.querySelector('#star-path').style.fill = 'gold';
 				document.querySelector('#streak-path').style.fill = 'gold';
 				document.querySelector('#s-path').style.fill = 'url(#fourth)';
@@ -219,9 +237,9 @@
 			}
 
 			function halloween() {
-				document.querySelector('#let1').style.color = '#EB6123';
-				document.querySelector('#let2').style.color = '#18181A';
-				document.querySelector('#let3').style.color = '#5E32BA';
+				document.querySelector('#let1').style = 'color: #EB6123;';
+				document.querySelector('#let2').style = 'color: #18181A;';
+				document.querySelector('#let3').style = 'color: #5E32BA;';
 				document.querySelector('#star-path').style.fill = '#BFDA7A';
 				document.querySelector('#streak-path').style.fill = '#96C457';
 				document.querySelector('#s-path').style.fill = '#EB6123';
@@ -235,26 +253,99 @@
 				document.querySelector('#x-top-path').style.fill = '#5E32BA';
 			}
 
-			var d = new Date();
-			const year = d.getFullYear();
-			const xmasStart = new Date(`12/1/${year} 00:00:00 AM`);
-			const xmasEnd = new Date(`12/26/${year} 11:59:59 PM`);
+			function mickey() {
+				document.querySelector('#let1').style =
+					'background: -webkit-linear-gradient(black 50%, red 50%);  -webkit-background-clip: text;  -webkit-text-fill-color: transparent;';
+				document.querySelector('#let2').style =
+					'background: -webkit-linear-gradient(black 50%, red 50%);  -webkit-background-clip: text;  -webkit-text-fill-color: transparent;';
+				document.querySelector('#let3').style =
+					'background: -webkit-linear-gradient(black 50%, red 50%);  -webkit-background-clip: text;  -webkit-text-fill-color: transparent;';
+				document.querySelector('#star-path').style.fill = '#FEF200';
+				document.querySelector('#streak-path').style.fill = '#FEF200';
+				document.querySelector('#s-path').style.fill = 'url(#mickey)';
+				document.querySelector('#h-path').style.fill = 'url(#mickey)';
+				document.querySelector('#i-path').style.fill = 'url(#mickey)';
+				document.querySelector('#f-bottom-path').style.fill = 'red';
+				document.querySelector('#f-top-path').style.fill = 'black';
+				document.querySelector('#t-bottom-path').style.fill = 'red';
+				document.querySelector('#t-top-path').style.fill = 'black';
+				document.querySelector('#x-bottom-path').style.fill = 'red';
+				document.querySelector('#x-top-path').style.fill = 'black';
+			}
+
+			function thanksgiving() {
+				document.querySelector('#let1').style = 'color: #382615;';
+				document.querySelector('#let2').style = 'color: #ED732E;';
+				document.querySelector('#let3').style = 'color: #9D221E;';
+				document.querySelector('#star-path').style.fill = '#F8B12C';
+				document.querySelector('#streak-path').style.fill = '#859D3C';
+				document.querySelector('#s-path').style.fill = '#382615';
+				document.querySelector('#h-path').style.fill = '#ED732E';
+				document.querySelector('#i-path').style.fill = '#9D221E';
+				document.querySelector('#f-bottom-path').style.fill = '#382615';
+				document.querySelector('#f-top-path').style.fill = '#382615';
+				document.querySelector('#t-bottom-path').style.fill = '#ED732E';
+				document.querySelector('#t-top-path').style.fill = '#ED732E';
+				document.querySelector('#x-bottom-path').style.fill = '#9D221E';
+				document.querySelector('#x-top-path').style.fill = '#9D221E';
+			}
+
+			var d = new Date(); // Today's Date
+			const year = d.getFullYear(); // This Year
+
+			// Function to find out if today is the last Monday of May
+			// aka Memorial Day
+			function isMemorial(d) {
+				if (d.getMonth() + 1 != 5 || d.getDay() != 1) {
+					return false;
+				} else if (
+					d.getDate() == 25 ||
+					d.getDate() == 26 ||
+					d.getDate() == 27 ||
+					d.getDate() == 28 ||
+					d.getDate() == 28 ||
+					d.getDate() == 30 ||
+					d.getDate() == 31
+				) {
+					return true;
+				}
+			}
+
+			// Finds out if today is the fourth Thursday of November
+			// aka Thanksgiving Day
+			if (
+				d.getMonth() + 1 == 11 &&
+				d.getDay() != 5 &&
+				(d.getDate() == 22 ||
+					d.getDate() == 23 ||
+					d.getDate() == 24 ||
+					d.getDate() == 25 ||
+					d.getDate() == 26 ||
+					d.getDate() == 27 ||
+					d.getDate() == 28)
+			) {
+				thanksgiving();
+			}
+
+			const xmasStart = new Date(`12/1/${year} 00:00:00 AM`); //Christmas Start
+			const xmasEnd = new Date(`12/26/${year} 11:59:59 PM`); // Christmas End
 			if (d >= xmasStart && d <= xmasEnd) {
 				changeXMas();
 			}
 
-			const holiday = new Date(`2/8/${year}`);
-			if (d.getMonth() == holiday.getMonth() && d.getDate() == holiday.getDate()) {
-				console.log('Hi!');
+			// Earth Day
+			const earth = new Date(`4/22/${year}`);
+			if (d.getMonth() == earth.getMonth() && d.getDate() == earth.getDate()) {
+				earthDay();
 			}
 
-			const fourth = new Date(`7/4/${year}`);
-			const patriot = new Date(`9/11/${year}`);
+			const fourth = new Date(`7/4/${year}`); // Fourth of July
+			const patriot = new Date(`9/11/${year}`); // 9/11 (Patriot Day)
 			if (
 				(d.getMonth() == fourth.getMonth() && d.getDate() == fourth.getDate()) ||
-				(d.getMonth() == patriot.getMonth() && d.getDate() == patriot.getDate())
+				(d.getMonth() == patriot.getMonth() && d.getDate() == patriot.getDate()) ||
+				isMemorial(d)
 			) {
-				console.log(d.getDate);
 				fourthJuly();
 			}
 			const halloweenStart = new Date(`10/31/${year} 00:00:00 AM`);
