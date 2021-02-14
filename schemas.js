@@ -25,19 +25,19 @@ const extension = (joi) => ({
 
 const Joi = BaseJoi.extend(extension);
 
-module.exports.shiftXSchema = Joi.object({
+module.exports.shiftSchema = Joi.object({
 	shiftX: Joi.object({
 		title: Joi.string().required().escapeHTML(),
-		startDate: Joi.date().required().escapeHTML(),
-		description: Joi.string().required().escapeHTML(),
-		location: Joi.string().required().escapeHTML(),
+		start: Joi.date().required().escapeHTML(),
+		end: Joi.string().required().escapeHTML(),
+		comments: Joi.string().required().escapeHTML(),
 	}).required(),
-	deleteImages: Joi.array(),
 });
 
-module.exports.shiftWSchema = Joi.object({
-	shiftW: Joi.object({
-		body: Joi.string().required().escapeHTML(),
-		rating: Joi.number().required().escapeHTML(),
+module.exports.proficiencySchema = Joi.object({
+	proficiency: Joi.object({
+		role: Joi.string().required().escapeHTML(),
+		property: Joi.string().required().escapeHTML(),
+		location: Joi.number().required().escapeHTML(),
 	}).required(),
 });

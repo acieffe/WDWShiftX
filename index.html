@@ -174,6 +174,8 @@
 			</svg>
 		</header>
 		<div class="buttons">
+			<button onclick="valentines()">St.Valentine's</button>
+			<button onclick="stPatty()">St.Patrick's</button>
 			<button onclick="earthDay()">Earth Day</button>
 			<button onclick="thanksgiving()">Thanksgiving</button>
 			<button onclick="mickey()">Mickey</button>
@@ -182,8 +184,37 @@
 			<button onclick="halloween()">Halloween</button>
 		</div>
 		<script>
-			function changeGreen() {
-				document.querySelector('#star-path').style.fill = 'green';
+			function valentines() {
+				document.querySelector('#let1').style = 'color: #E10180;';
+				document.querySelector('#let2').style = 'color: #F4B4CE;';
+				document.querySelector('#let3').style = 'color: #EE78B5;';
+				document.querySelector('#star-path').style.fill = '#EA3E9A';
+				document.querySelector('#streak-path').style.fill = '#EA3E9A';
+				document.querySelector('#s-path').style.fill = '#E10180';
+				document.querySelector('#h-path').style.fill = '#F4B4CE';
+				document.querySelector('#i-path').style.fill = '#EE78B5';
+				document.querySelector('#f-bottom-path').style.fill = '#E10180';
+				document.querySelector('#f-top-path').style.fill = '#E10180';
+				document.querySelector('#t-bottom-path').style.fill = '#F4B4CE';
+				document.querySelector('#t-top-path').style.fill = '#F4B4CE';
+				document.querySelector('#x-bottom-path').style.fill = '#EE78B5';
+				document.querySelector('#x-top-path').style.fill = '#EE78B5';
+			}
+			function stPatty() {
+				document.querySelector('#let1').style = 'color: #019847;';
+				document.querySelector('#let2').style = 'color: #FDFDFD;';
+				document.querySelector('#let3').style = 'color: #FD7801;';
+				document.querySelector('#star-path').style.fill = 'gold';
+				document.querySelector('#streak-path').style.fill = 'gold';
+				document.querySelector('#s-path').style.fill = '#019847';
+				document.querySelector('#h-path').style.fill = '#FDFDFD';
+				document.querySelector('#i-path').style.fill = '#FD7801';
+				document.querySelector('#f-bottom-path').style.fill = '#019847';
+				document.querySelector('#f-top-path').style.fill = '#019847';
+				document.querySelector('#t-bottom-path').style.fill = '#FDFDFD';
+				document.querySelector('#t-top-path').style.fill = '#FDFDFD';
+				document.querySelector('#x-bottom-path').style.fill = '#FD7801';
+				document.querySelector('#x-top-path').style.fill = '#FD7801';
 			}
 			function changeXMas() {
 				document.querySelector('#let1').style = 'color: red;';
@@ -327,18 +358,20 @@
 				thanksgiving();
 			}
 
+			// Christmas Time Call
 			const xmasStart = new Date(`12/1/${year} 00:00:00 AM`); //Christmas Start
 			const xmasEnd = new Date(`12/26/${year} 11:59:59 PM`); // Christmas End
 			if (d >= xmasStart && d <= xmasEnd) {
 				changeXMas();
 			}
 
-			// Earth Day
+			// Earth Day Call
 			const earth = new Date(`4/22/${year}`);
 			if (d.getMonth() == earth.getMonth() && d.getDate() == earth.getDate()) {
 				earthDay();
 			}
 
+			// Fourth of July, Memorial Day & Patriot Day Calls
 			const fourth = new Date(`7/4/${year}`); // Fourth of July
 			const patriot = new Date(`9/11/${year}`); // 9/11 (Patriot Day)
 			if (
@@ -348,9 +381,22 @@
 			) {
 				fourthJuly();
 			}
-			const halloweenStart = new Date(`10/31/${year} 00:00:00 AM`);
-			const halloweenEnd = new Date(`10/31/${year} 11:59:59 PM`);
-			if (d >= halloweenStart && d <= halloweenEnd) {
+
+			// Valentine's Day Call
+			const valentine = new Date(`2/14/${year}`);
+			if (d.getMonth() == valentine.getMonth() && d.getDate() == valentine.getDate()) {
+				valentines();
+			}
+
+			// St. Pattrick's Day Call
+			const stPatrick = new Date(`3/17/${year}`);
+			if (d.getMonth() == stPatrick.getMonth() && d.getDate() == stPatrick.getDate()) {
+				stPatty();
+			}
+
+			// Halloween Call
+			const halloweenDay = new Date(`10/31/${year}`);
+			if (d.getMonth() == halloweenDay.getMonth() && d.getDate() == halloweenDay.getDate()) {
 				halloween();
 			}
 		</script>

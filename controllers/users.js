@@ -8,13 +8,13 @@ module.exports.renderRegistration = (req, res) => {
 // Saving user to database
 module.exports.register = async (req, res, next) => {
 	try {
-		const { email, username, password } = req.body;
+		const { fname, lname, email, phone, password } = req.body;
 		const user = new User({ email, username });
 		const registeredUser = await User.register(user, password);
 		req.login(registeredUser, (err) => {
 			if (err) return next(err);
 			req.flash('success', `Welcome to the site, ${user.username}!`);
-			res.redirect('/campgrounds');
+			res.redirect('/shifts');
 		});
 	} catch (e) {
 		req.flash('error', e.message);
