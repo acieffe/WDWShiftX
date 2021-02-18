@@ -18,10 +18,10 @@ const { MongoStore } = require('connect-mongo');
 const MongoDBStore = require('connect-mongo')(session);
 
 const userRoutes = require('./routes/users');
-const campgroundRoutes = require('./routes/campgrounds');
-const reviewRoutes = require('./routes/reviews');
+const shiftRoutes = require('./routes/shifts');
+const proficiencyRoutes = require('./routes/proficiencies');
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/shiftx';
 
 // Connecting Mongoose
 mongoose.connect(dbUrl, {
@@ -129,21 +129,14 @@ app.use((req, res, next) => {
 });
 
 app.use('/', userRoutes);
-app.use('/campgrounds', campgroundRoutes);
-app.use('/campgrounds/:id/reviews', reviewRoutes);
+app.use('/shifts', shiftRoutes);
+app.use('/shifts/:id/proficiencies', proficiencyRoutes);
 
 // Main page
 app.get('/', function (req, res) {
 	res.render('home');
 	//res.send('YESSSSS')
 });
-
-// THIS WAS A TEST TO CREATE A SINGLE CAMPGROUND
-// app.get('/makecampground', async (req, res) => {
-//     const camp = new Campground({title: 'My Backyard', price: "32.50", description: 'Dirt Cheap Camping', location: "backyard"});
-//     await camp.save();
-//     res.send(camp)
-// })
 
 // 404 Error Handling
 app.all('*', (req, res, next) => {

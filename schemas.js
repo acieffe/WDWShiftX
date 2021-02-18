@@ -29,7 +29,7 @@ module.exports.shiftSchema = Joi.object({
 	shiftX: Joi.object({
 		title: Joi.string().required().escapeHTML(),
 		start: Joi.date().required().escapeHTML(),
-		end: Joi.string().required().escapeHTML(),
+		end: Joi.date().required().escapeHTML(),
 		comments: Joi.string().required().escapeHTML(),
 	}).required(),
 });

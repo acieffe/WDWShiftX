@@ -1,7 +1,7 @@
-const { campgroundSchema, reviewSchema } = require('./schemas.js');
+const { shiftSchema, reviewSchema } = require('./schemas.js');
 const AppError = require('./utils/AppError');
-const Campground = require('./models/campground');
-const Review = require('./models/review');
+const Shift = require('./models/shift');
+const Proficiency = require('./models/proficiency');
 
 module.exports.isLoggedIn = (req, res, next) => {
 	if (!req.isAuthenticated()) {
@@ -12,9 +12,9 @@ module.exports.isLoggedIn = (req, res, next) => {
 	next();
 };
 
-// Validate inputs from a campground form
-module.exports.validateCampground = (req, res, next) => {
-	const { error } = campgroundSchema.validate(req.body);
+// Validate inputs from a shift form
+module.exports.validateShift = (req, res, next) => {
+	const { error } = shiftSchema.validate(req.body);
 	if (error) {
 		const msg = error.details.map((el) => el.message).join(',');
 		throw new AppError(msg, 400);
@@ -23,20 +23,20 @@ module.exports.validateCampground = (req, res, next) => {
 	}
 };
 
-// Verifies if the user is the Campground Author
+// Verifies if the user is the Shift Author
 module.exports.isAuthor = async (req, res, next) => {
 	const { id } = req.params;
-	const campground = await Campground.findById(id);
-	if (!campground.author.equals(req.user._id)) {
+	const shift = await Shift.findById(id);
+	if (!shift.author.equals(req.user._id)) {
 		req.flash('error', "Can't Touch This!");
-		return res.redirect(`/campgrounds/${id}`);
+		return res.redirect(`/shifts/${id}`);
 	}
 	next();
 };
 
-// Validate inputs from a review form
-module.exports.validateReview = (req, res, next) => {
-	const { error } = reviewSchema.validate(req.body);
+// Validate inputs from the proficiency form
+module.exports.validateProficiency = (req, res, next) => {
+	const { error } = proficiencySchema.validate(req.body);
 	if (error) {
 		const msg = error.details.map((el) => el.message).join(',');
 		throw new AppError(msg, 400);
@@ -45,13 +45,13 @@ module.exports.validateReview = (req, res, next) => {
 	}
 };
 
-// Verifies if the user is the Reeview Author
-module.exports.isReviewAuthor = async (req, res, next) => {
+// Verifies if the user is the Proficiency Author
+module.exports.isProficiencyAuthor = async (req, res, next) => {
 	const { id, reviewId } = req.params;
-	const review = await Review.findById(reviewId);
-	if (!review.author.equals(req.user._id)) {
+	const proficiency = await Proficiency.findById(proficiencyId);
+	if (!proficiency.author.equals(req.user._id)) {
 		req.flash('error', "Can't Touch This!");
-		return res.redirect(`/campgrounds/${id}`);
+		return res.redirect(`/shifts/${id}`);
 	}
 	next();
 };
