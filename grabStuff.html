@@ -1,0 +1,728 @@
+<html lang="en">
+	<head>
+		<title>Schedule View</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<base href="/" />
+	</head>
+	<body
+		class="app ui-mobile ui-desktop ui-tablet ui-overlay-a"
+		data-new-gr-c-s-check-loaded="14.997.0"
+		data-gr-ext-installed=""
+		cz-shortcut-listen="true"
+	>
+		<div navigation="" id="main-navbar-container" class="navbar-container">
+			<div class="container">
+				<header class="navbar-header">
+					<div return-to-landing="">
+						<div class="return-to-landing-container">
+							<a
+								class="link ng-scope"
+								ng-click="returnToLandingVm.openMenu()"
+								ng-if="!returnToLandingVm.inHelpPage &amp;&amp; !returnToLandingVm.navigateToScheduleView.isActive"
+								tabindex="0"
+							>
+								<i class="landing-indicator kng-icon-font kng-ic_hd_menu_global_nav"></i>
+							</a>
+						</div>
+					</div>
+					<a class="navbar-logout-button ng-binding" ng-bind="nav.language.getLocale('button.logout')" ng-click="nav.logout()" tabindex="0"
+						>Sign Out</a
+					>
+					<div class="bell-notification" bell-notification="">
+						<div ng-if="bellNotificationVm.notification.show" class="bell-notification-container ng-scope">
+							<a class="link" href="https://wdpr.service-now.com/wdpr-cast/x_wdtpa_wdpr_hub_cast.do#!/notifications" target="_blank">
+								<div>
+									<i class="workforce-icon-font wm-Icon_Notification_Bell notification-item"></i>
+								</div>
+							</a>
+						</div>
+					</div>
+				</header>
+			</div>
+		</div>
+
+		<div ui-view="" class="navbar-top-buffer ng-scope">
+			<div ui-view="" class="ng-scope">
+				<div class="calendar page container back flex outer-modal-container ng-scope">
+					<div class="order-0 on-behalf-of">
+					</div>
+					<div class="order-2">
+						<div ng-show="calendarVm.calendarReady &amp;&amp; calendarVm.events.length > 0" aria-hidden="false" class="">
+							<div class="white-pane no-tmargin calendar-pane sticky-container">
+								<div class="home-welcome ng-scope" ng-if="calendarVm.calendarView === 'week'">
+									<p class="home-welcome-greeting">
+										<span ng-bind="calendarVm.language.getLocale('section.main-menu.welcome')" class="ng-binding">Welcome</span>,
+										<span class="home-welcome-name ng-binding" ng-bind="calendarVm.session.member.firstName">Ace</span>
+									</p>
+									<p ng-bind="calendarVm.session.member.perner" class="home-welcome-perner ng-binding">00511062</p>
+								</div>
+								<div
+									class="calendar-button-row ng-scope"
+									ng-if="calendarVm.calendarView === 'week' &amp;&amp; calendarVm.userSession.access.calendarAccessLevel > 0"
+								>
+									<div
+										class="calendar-button ng-scope"
+										ng-if="calendarVm.hasMonthlyAccess"
+										ng-click="calendarVm.navigateToFutureRequests()"
+										role="button"
+										tabindex="0"
+									>
+										<i class="kng-icon-font kng-ic_calendar_month calendar-future-requests-icon"> </i>
+										<span
+											ng-bind="calendarVm.language.getLocale('section.calendar.futureRequests.link')"
+											class="calendar-future-requests-label ng-binding"
+											>Future Requests</span
+										>
+									</div>
+									<div class="calendar-button">
+										<a
+											ng-href="https://wdpr.service-now.com/wdpr-cast/x_wdtpa_labor_serv_view_content.do?kb_id=KB0010083"
+											class="link"
+											target="_blank"
+											href="https://wdpr.service-now.com/wdpr-cast/x_wdtpa_labor_serv_view_content.do?kb_id=KB0010083"
+										>
+											<span class="kng-icon-font kng-ic_info calendar-help-icon"> </span>
+										</a>
+									</div>
+									<hr />
+								</div>
+								<div class="flex mwl-calendar-container">
+									<div class="order-1">
+										<mwl-calendar
+											calendar-vm="calendarVm"
+											events="calendarVm.events"
+											view="calendarVm.calendarView"
+											view-title="calendarVm.calendarTitle"
+											view-date="calendarVm.viewDate"
+											edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
+											delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
+											on-edit-event-click="calendarVm.editTimeoff(calendarEvent,'month')"
+											day-view-split="30"
+											class="ng-isolate-scope"
+											><div ng-switch="vm.view" ng-class="{'cal-context': !vm.calendarVm.inWeeklyView}">
+												<div
+													class="alert alert-danger ng-hide"
+													ng-hide="vm.viewDate"
+													aria-hidden="Wed Feb 24 2021 17:55:09 GMT-0500 (Eastern Standard Time)"
+												>
+													The value passed to view-date attribute of the calendar is not set
+												</div>
+												<mwl-calendar-week
+													calendar-vm="vm.calendarVm"
+													events="vm.events"
+													view-date="vm.viewDate"
+													on-event-click="vm.onEventClick"
+													on-event-times-changed="vm.onEventTimesChanged"
+													day-view-start="vm.dayViewStart"
+													day-view-end="vm.dayViewEnd"
+													day-view-split="vm.dayViewSplit"
+													on-timespan-click="vm.onTimespanClick"
+													ng-switch-when="week"
+													class="ng-scope ng-isolate-scope"
+													><div class="cal-week-box" ng-class="{'cal-day-box': vm.showTimes}">
+														<div class="cal-week">
+															<div
+																ng-repeat="day in vm.view.days track by $index"
+																class="weekday-row-container clearfix ng-scope"
+																ng-attr-id="{{ 'schedule-day-' + day.date.format('YYYYMMDD') }}"
+																id="schedule-day-20210224"
+															>
+																<dis-sticky-header
+																	ng-if="day.showHeader === true"
+																	class="ng-scope"
+																	style="height: 50px"
+																	><dis-sticky ng-transclude="" class="" style="top: 52px; left: 0px">
+																		<div class="cal-week-header ng-scope">
+																			<div class="cal-week-header-date ng-binding" ng-bind="day.weekLabel">
+																				Feb 24 - Feb 27, 2021
+																			</div>
+																			<a
+																				class="workforce-icon-font wm-Icon_Related_Items printable-schedule-icon"
+																				target="_blank"
+																				href="https://scheduleview.disney.com/printableSchedule/00511062"
+																			></a>
+																		</div> </dis-sticky></dis-sticky-header
+																<div class="cal-row-fluid cal-row-head">
+																	<div class="cal-week-body">
+																		<div class="cal-day-panel">
+																			<p class="weekday-title">
+																				<span ng-bind="day.weekDayLabel" class="weekday-label ng-binding">Today</span>,
+																				<span ng-bind="day.dayLabel" class="weekday-label-data ng-binding"
+																					>February 24, 2021</span
+																				>
+																			</p>
+																			<div class="week-events-container">
+																				<p
+																					class="cal-week-empty-day ng-binding ng-scope"
+																					ng-if="day.event.schedule.isEmpty"
+																					ng-bind="vm.language.getLocale('section.calendar.week.emptyday')"
+																				>
+																					No Shifts
+																				</p>
+																				<div
+																					ng-if="vm.canEhh === true &amp;&amp; (day.event.schedule.isEmpty === false || (day.event.schedule.isEmpty === true &amp;&amp; !day.event.schedule.openShift))"
+																					ng-class="{'add-ehh-shift-link': !day.event.schedule.isEmpty}"
+																					class="ng-scope"
+																				>
+																					<a href="#" ng-click="vm.launchEhhSearch(day.date)" tabindex="0">
+																						<span class="centered-line">
+																							<i class="kng-icon-font kng-ic_add calendar-future-requests-icon"> </i>
+																							<span
+																								class="calendar-future-requests-label ng-binding"
+																								ng-bind="vm.language.getLocale('section.ehh.search.add-shift')"
+																								>Add a Shift</span
+																							>
+																						</span>
+																					</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div
+																ng-repeat="day in vm.view.days track by $index"
+																class="weekday-row-container clearfix ng-scope"
+																ng-attr-id="{{ 'schedule-day-' + day.date.format('YYYYMMDD') }}"
+																id="schedule-day-20210225"
+															>
+																<div class="cal-row-fluid cal-row-head">
+																	<div class="cal-week-body">
+																		<div class="cal-day-panel">
+																			<p class="weekday-title">
+																				<span ng-bind="day.weekDayLabel" class="weekday-label ng-binding">Tomorrow</span>,
+																				<span ng-bind="day.dayLabel" class="weekday-label-data ng-binding"
+																					>February 25, 2021</span
+																				>
+																			</p>
+																			<div class="week-events-container">
+																				<div
+																					ng-repeat="shift in day.event.schedule.shifts"
+																					class="cal-week-schedule-item ng-scope"
+																					ng-click="vm.shiftSelected(shift, false)"
+																					role="button"
+																					tabindex="0"
+																				>
+																					<p class="cal-week-shift-position ng-binding">14:15 - 20:45</p>
+																					<p ng-bind="shift.positionDescription" class="ng-binding">MK Main Street</p>
+																				</div>
+																				<div
+																					ng-if="vm.canEhh === true &amp;&amp; (day.event.schedule.isEmpty === false || (day.event.schedule.isEmpty === true &amp;&amp; !day.event.schedule.openShift))"
+																					ng-class="{'add-ehh-shift-link': !day.event.schedule.isEmpty}"
+																					class="ng-scope add-ehh-shift-link"
+																				>
+																					<a href="#" ng-click="vm.launchEhhSearch(day.date)" tabindex="0">
+																						<span class="centered-line">
+																							<i class="kng-icon-font kng-ic_add calendar-future-requests-icon"> </i>
+																							<span
+																								class="calendar-future-requests-label ng-binding"
+																								ng-bind="vm.language.getLocale('section.ehh.search.add-shift')"
+																								>Add a Shift</span
+																							>
+																						</span>
+																					</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div
+																ng-repeat="day in vm.view.days track by $index"
+																class="weekday-row-container clearfix ng-scope"
+																ng-attr-id="{{ 'schedule-day-' + day.date.format('YYYYMMDD') }}"
+																id="schedule-day-20210226"
+															>
+																<div class="cal-row-fluid cal-row-head">
+																	<div class="cal-week-body">
+																		<div class="cal-day-panel">
+																			<p class="weekday-title">
+																				<span ng-bind="day.weekDayLabel" class="weekday-label ng-binding">Fri</span>,
+																				<span ng-bind="day.dayLabel" class="weekday-label-data ng-binding"
+																					>February 26, 2021</span
+																				>
+																			</p>
+																			<div class="week-events-container">
+																				<div
+																					ng-repeat="shift in day.event.schedule.shifts"
+																					class="cal-week-schedule-item ng-scope"
+																					ng-click="vm.shiftSelected(shift, false)"
+																					role="button"
+																					tabindex="0"
+																				>
+																					<p class="cal-week-shift-position ng-binding">14:45 - 23:30</p>
+																					<p ng-bind="shift.positionDescription" class="ng-binding">MK Main Street</p>
+																				</div>
+																				<div
+																					ng-if="vm.canEhh === true &amp;&amp; (day.event.schedule.isEmpty === false || (day.event.schedule.isEmpty === true &amp;&amp; !day.event.schedule.openShift))"
+																					ng-class="{'add-ehh-shift-link': !day.event.schedule.isEmpty}"
+																					class="ng-scope add-ehh-shift-link"
+																				>
+																					<a href="#" ng-click="vm.launchEhhSearch(day.date)" tabindex="0">
+																						<span class="centered-line">
+																							<i class="kng-icon-font kng-ic_add calendar-future-requests-icon"> </i>
+																							<span
+																								class="calendar-future-requests-label ng-binding"
+																								ng-bind="vm.language.getLocale('section.ehh.search.add-shift')"
+																								>Add a Shift</span
+																							>
+																						</span>
+																					</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div
+																ng-repeat="day in vm.view.days track by $index"
+																class="weekday-row-container clearfix ng-scope"
+																ng-attr-id="{{ 'schedule-day-' + day.date.format('YYYYMMDD') }}"
+																id="schedule-day-20210227"
+															>
+																<div class="cal-row-fluid cal-row-head">
+																	<div class="cal-week-body">
+																		<div class="cal-day-panel">
+																			<p class="weekday-title">
+																				<span ng-bind="day.weekDayLabel" class="weekday-label ng-binding">Sat</span>,
+																				<span ng-bind="day.dayLabel" class="weekday-label-data ng-binding"
+																					>February 27, 2021</span
+																				>
+																			</p>
+																			<div class="week-events-container">
+																				<div
+																					ng-repeat="shift in day.event.schedule.shifts"
+																					class="cal-week-schedule-item ng-scope"
+																					ng-click="vm.shiftSelected(shift, false)"
+																					role="button"
+																					tabindex="0"
+																				>
+																					<p class="cal-week-shift-position ng-binding">14:30 - 23:45</p>
+																					<p ng-bind="shift.positionDescription" class="ng-binding">MK Main Street</p>
+																				</div>
+																				<div
+																					ng-if="vm.canEhh === true &amp;&amp; (day.event.schedule.isEmpty === false || (day.event.schedule.isEmpty === true &amp;&amp; !day.event.schedule.openShift))"
+																					ng-class="{'add-ehh-shift-link': !day.event.schedule.isEmpty}"
+																					class="ng-scope add-ehh-shift-link"
+																				>
+																					<a href="#" ng-click="vm.launchEhhSearch(day.date)" tabindex="0">
+																						<span class="centered-line">
+																							<i class="kng-icon-font kng-ic_add calendar-future-requests-icon"> </i>
+																							<span
+																								class="calendar-future-requests-label ng-binding"
+																								ng-bind="vm.language.getLocale('section.ehh.search.add-shift')"
+																								>Add a Shift</span
+																							>
+																						</span>
+																					</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div
+																ng-repeat="day in vm.view.days track by $index"
+																class="weekday-row-container clearfix ng-scope"
+																ng-attr-id="{{ 'schedule-day-' + day.date.format('YYYYMMDD') }}"
+																id="schedule-day-20210228"
+															>
+																<dis-sticky-header
+																	ng-if="day.showHeader === true"
+																	class="ng-scope"
+																	style="height: 50px"
+																	><dis-sticky ng-transclude="" class="">
+																		<div class="cal-week-header ng-scope">
+																			<div class="cal-week-header-date ng-binding" ng-bind="day.weekLabel">
+																				Feb 28 - Mar 6, 2021
+																			</div>
+																			<a
+																				class="workforce-icon-font wm-Icon_Related_Items printable-schedule-icon"
+																				target="_blank"
+																				href="https://scheduleview.disney.com/printableSchedule/00511062"
+																			></a>
+																		</div> </dis-sticky></dis-sticky-header
+																<div class="cal-row-fluid cal-row-head">
+																	<div class="cal-week-body">
+																		<div class="cal-day-panel">
+																			<p class="weekday-title">
+																				<span ng-bind="day.weekDayLabel" class="weekday-label ng-binding">Sun</span>,
+																				<span ng-bind="day.dayLabel" class="weekday-label-data ng-binding"
+																					>February 28, 2021</span
+																				>
+																			</p>
+																			<div class="week-events-container">
+																				<div
+																					ng-repeat="shift in day.event.schedule.shifts"
+																					class="cal-week-schedule-item ng-scope"
+																					ng-click="vm.shiftSelected(shift, false)"
+																					role="button"
+																					tabindex="0"
+																				>
+																					<p class="cal-week-shift-position ng-binding">14:45 - 20:45</p>
+																					<p ng-bind="shift.positionDescription" class="ng-binding">MK Main Street</p>
+																				</div>
+																				<div
+																					ng-if="vm.canEhh === true &amp;&amp; (day.event.schedule.isEmpty === false || (day.event.schedule.isEmpty === true &amp;&amp; !day.event.schedule.openShift))"
+																					ng-class="{'add-ehh-shift-link': !day.event.schedule.isEmpty}"
+																					class="ng-scope add-ehh-shift-link"
+																				>
+																					<a href="#" ng-click="vm.launchEhhSearch(day.date)" tabindex="0">
+																						<span class="centered-line">
+																							<i class="kng-icon-font kng-ic_add calendar-future-requests-icon"> </i>
+																							<span
+																								class="calendar-future-requests-label ng-binding"
+																								ng-bind="vm.language.getLocale('section.ehh.search.add-shift')"
+																								>Add a Shift</span
+																							>
+																						</span>
+																					</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div
+																ng-repeat="day in vm.view.days track by $index"
+																class="weekday-row-container clearfix ng-scope"
+																ng-attr-id="{{ 'schedule-day-' + day.date.format('YYYYMMDD') }}"
+																id="schedule-day-20210301"
+															>
+																<div class="cal-row-fluid cal-row-head">
+																	<div class="cal-week-body">
+																		<div class="cal-day-panel">
+																			<p class="weekday-title">
+																				<span ng-bind="day.weekDayLabel" class="weekday-label ng-binding">Mon</span>,
+																				<span ng-bind="day.dayLabel" class="weekday-label-data ng-binding">March 1, 2021</span>
+																			</p>
+																			<div class="week-events-container">
+																				<div
+																					ng-repeat="shift in day.event.schedule.shifts"
+																					class="cal-week-schedule-item ng-scope"
+																					ng-click="vm.shiftSelected(shift, false)"
+																					role="button"
+																					tabindex="0"
+																				>
+																					<p class="cal-week-shift-position ng-binding">14:15 - 20:45</p>
+																					<p ng-bind="shift.positionDescription" class="ng-binding">MK Main Street</p>
+																				</div>
+																				<div
+																					ng-if="vm.canEhh === true &amp;&amp; (day.event.schedule.isEmpty === false || (day.event.schedule.isEmpty === true &amp;&amp; !day.event.schedule.openShift))"
+																					ng-class="{'add-ehh-shift-link': !day.event.schedule.isEmpty}"
+																					class="ng-scope add-ehh-shift-link"
+																				>
+																					<a href="#" ng-click="vm.launchEhhSearch(day.date)" tabindex="0">
+																						<span class="centered-line">
+																							<i class="kng-icon-font kng-ic_add calendar-future-requests-icon"> </i>
+																							<span
+																								class="calendar-future-requests-label ng-binding"
+																								ng-bind="vm.language.getLocale('section.ehh.search.add-shift')"
+																								>Add a Shift</span
+																							>
+																						</span>
+																					</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div
+																ng-repeat="day in vm.view.days track by $index"
+																class="weekday-row-container clearfix ng-scope"
+																ng-attr-id="{{ 'schedule-day-' + day.date.format('YYYYMMDD') }}"
+																id="schedule-day-20210302"
+															>
+																<div class="cal-row-fluid cal-row-head">
+																	<div class="cal-week-body">
+																		<div class="cal-day-panel">
+																			<p class="weekday-title">
+																				<span ng-bind="day.weekDayLabel" class="weekday-label ng-binding">Tue</span>,
+																				<span ng-bind="day.dayLabel" class="weekday-label-data ng-binding">March 2, 2021</span>
+																			</p>
+																			<div class="week-events-container">
+																				<p
+																					class="cal-week-empty-day ng-binding ng-scope"
+																					ng-if="day.event.schedule.isEmpty"
+																					ng-bind="vm.language.getLocale('section.calendar.week.emptyday')"
+																				>
+																					No Shifts
+																				</p>
+																				<div
+																					ng-if="vm.canEhh === true &amp;&amp; (day.event.schedule.isEmpty === false || (day.event.schedule.isEmpty === true &amp;&amp; !day.event.schedule.openShift))"
+																					ng-class="{'add-ehh-shift-link': !day.event.schedule.isEmpty}"
+																					class="ng-scope"
+																				>
+																					<a href="#" ng-click="vm.launchEhhSearch(day.date)" tabindex="0">
+																						<span class="centered-line">
+																							<i class="kng-icon-font kng-ic_add calendar-future-requests-icon"> </i>
+																							<span
+																								class="calendar-future-requests-label ng-binding"
+																								ng-bind="vm.language.getLocale('section.ehh.search.add-shift')"
+																								>Add a Shift</span
+																							>
+																						</span>
+																					</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div
+																ng-repeat="day in vm.view.days track by $index"
+																class="weekday-row-container clearfix ng-scope"
+																ng-attr-id="{{ 'schedule-day-' + day.date.format('YYYYMMDD') }}"
+																id="schedule-day-20210303"
+															>
+																<div class="cal-row-fluid cal-row-head">
+																	<div class="cal-week-body">
+																		<div class="cal-day-panel">
+																			<p class="weekday-title">
+																				<span ng-bind="day.weekDayLabel" class="weekday-label ng-binding">Wed</span>,
+																				<span ng-bind="day.dayLabel" class="weekday-label-data ng-binding">March 3, 2021</span>
+																			</p>
+																			<div class="week-events-container">
+																				<p
+																					class="cal-week-empty-day ng-binding ng-scope"
+																					ng-if="day.event.schedule.isEmpty"
+																					ng-bind="vm.language.getLocale('section.calendar.week.emptyday')"
+																				>
+																					No Shifts
+																				</p>
+																				<div
+																					ng-if="vm.canEhh === true &amp;&amp; (day.event.schedule.isEmpty === false || (day.event.schedule.isEmpty === true &amp;&amp; !day.event.schedule.openShift))"
+																					ng-class="{'add-ehh-shift-link': !day.event.schedule.isEmpty}"
+																					class="ng-scope"
+																				>
+																					<a href="#" ng-click="vm.launchEhhSearch(day.date)" tabindex="0">
+																						<span class="centered-line">
+																							<i class="kng-icon-font kng-ic_add calendar-future-requests-icon"> </i>
+																							<span
+																								class="calendar-future-requests-label ng-binding"
+																								ng-bind="vm.language.getLocale('section.ehh.search.add-shift')"
+																								>Add a Shift</span
+																							>
+																						</span>
+																					</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div
+																ng-repeat="day in vm.view.days track by $index"
+																class="weekday-row-container clearfix ng-scope"
+																ng-attr-id="{{ 'schedule-day-' + day.date.format('YYYYMMDD') }}"
+																id="schedule-day-20210304"
+															>
+																<div class="cal-row-fluid cal-row-head">
+																	<div class="cal-week-body">
+																		<div class="cal-day-panel">
+																			<p class="weekday-title">
+																				<span ng-bind="day.weekDayLabel" class="weekday-label ng-binding">Thu</span>,
+																				<span ng-bind="day.dayLabel" class="weekday-label-data ng-binding">March 4, 2021</span>
+																			</p>
+																			<div class="week-events-container">
+																				<div
+																					ng-repeat="shift in day.event.schedule.shifts"
+																					class="cal-week-schedule-item ng-scope"
+																					ng-click="vm.shiftSelected(shift, false)"
+																					role="button"
+																					tabindex="0"
+																				>
+																					<p class="cal-week-shift-position ng-binding">14:15 - 20:45</p>
+																					<p ng-bind="shift.positionDescription" class="ng-binding">MK Main Street</p>
+																				</div>
+																				<div
+																					ng-if="vm.canEhh === true &amp;&amp; (day.event.schedule.isEmpty === false || (day.event.schedule.isEmpty === true &amp;&amp; !day.event.schedule.openShift))"
+																					ng-class="{'add-ehh-shift-link': !day.event.schedule.isEmpty}"
+																					class="ng-scope add-ehh-shift-link"
+																				>
+																					<a href="#" ng-click="vm.launchEhhSearch(day.date)" tabindex="0">
+																						<span class="centered-line">
+																							<i class="kng-icon-font kng-ic_add calendar-future-requests-icon"> </i>
+																							<span
+																								class="calendar-future-requests-label ng-binding"
+																								ng-bind="vm.language.getLocale('section.ehh.search.add-shift')"
+																								>Add a Shift</span
+																							>
+																						</span>
+																					</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div
+																ng-repeat="day in vm.view.days track by $index"
+																class="weekday-row-container clearfix ng-scope"
+																ng-attr-id="{{ 'schedule-day-' + day.date.format('YYYYMMDD') }}"
+																id="schedule-day-20210305"
+															>
+																<div class="cal-row-fluid cal-row-head">
+																	<div class="cal-week-body">
+																		<div class="cal-day-panel">
+																			<p class="weekday-title">
+																				<span ng-bind="day.weekDayLabel" class="weekday-label ng-binding">Fri</span>,
+																				<span ng-bind="day.dayLabel" class="weekday-label-data ng-binding">March 5, 2021</span>
+																			</p>
+																			<div class="week-events-container">
+																				<div
+																					ng-repeat="shift in day.event.schedule.shifts"
+																					class="cal-week-schedule-item ng-scope"
+																					ng-click="vm.shiftSelected(shift, false)"
+																					role="button"
+																					tabindex="0"
+																				>
+																					<p class="cal-week-shift-position ng-binding">14:15 - 21:45</p>
+																					<p ng-bind="shift.positionDescription" class="ng-binding">MK Main Street</p>
+																				</div>
+																				<div
+																					ng-if="vm.canEhh === true &amp;&amp; (day.event.schedule.isEmpty === false || (day.event.schedule.isEmpty === true &amp;&amp; !day.event.schedule.openShift))"
+																					ng-class="{'add-ehh-shift-link': !day.event.schedule.isEmpty}"
+																					class="ng-scope add-ehh-shift-link"
+																				>
+																					<a href="#" ng-click="vm.launchEhhSearch(day.date)" tabindex="0">
+																						<span class="centered-line">
+																							<i class="kng-icon-font kng-ic_add calendar-future-requests-icon"> </i>
+																							<span
+																								class="calendar-future-requests-label ng-binding"
+																								ng-bind="vm.language.getLocale('section.ehh.search.add-shift')"
+																								>Add a Shift</span
+																							>
+																						</span>
+																					</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div
+																ng-repeat="day in vm.view.days track by $index"
+																class="weekday-row-container clearfix ng-scope"
+																ng-attr-id="{{ 'schedule-day-' + day.date.format('YYYYMMDD') }}"
+																id="schedule-day-20210306"
+															>
+																<div class="cal-row-fluid cal-row-head">
+																	<div
+																		ng-if="$last"
+																		wfm-ng-repeat-complete=""
+																		after-ng-repeat="vm.afterScheduleDayFocus()"
+																		class="ng-scope ng-isolate-scope"
+																	></div>
+																	<div class="cal-week-body">
+																		<div class="cal-day-panel">
+																			<p class="weekday-title">
+																				<span ng-bind="day.weekDayLabel" class="weekday-label ng-binding">Sat</span>,
+																				<span ng-bind="day.dayLabel" class="weekday-label-data ng-binding">March 6, 2021</span>
+																			</p>
+																			<div class="week-events-container">
+																				<div
+																					ng-repeat="shift in day.event.schedule.shifts"
+																					class="cal-week-schedule-item ng-scope"
+																					ng-click="vm.shiftSelected(shift, false)"
+																					role="button"
+																					tabindex="0"
+																				>
+																					<p class="cal-week-shift-position ng-binding">14:15 - 21:45</p>
+																					<p ng-bind="shift.positionDescription" class="ng-binding">MK Main Street</p>
+																				</div>
+																				<div
+																					ng-if="vm.canEhh === true &amp;&amp; (day.event.schedule.isEmpty === false || (day.event.schedule.isEmpty === true &amp;&amp; !day.event.schedule.openShift))"
+																					ng-class="{'add-ehh-shift-link': !day.event.schedule.isEmpty}"
+																					class="ng-scope add-ehh-shift-link"
+																				>
+																					<a href="#" ng-click="vm.launchEhhSearch(day.date)" tabindex="0">
+																						<span class="centered-line">
+																							<i class="kng-icon-font kng-ic_add calendar-future-requests-icon"> </i>
+																							<span
+																								class="calendar-future-requests-label ng-binding"
+																								ng-bind="vm.language.getLocale('section.ehh.search.add-shift')"
+																								>Add a Shift</span
+																							>
+																						</span>
+																					</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div> </mwl-calendar-week
+											</div>
+										</mwl-calendar>
+										<div cal-day-container=""></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div view-future-requests-container=""></div>
+				</div>
+			</div>
+		</div>
+
+      <script>
+         const shifts = {};
+
+         function addDaysToDate(date, days) {
+            var now = new Date(date);
+            now.setDate(now.getDate() + days);
+            return now;
+         }
+         const shiftNodes = document.querySelectorAll(".cal-day-panel")
+         const today = new Date();
+         for (let i = 0; i < shiftNodes.length; i++) {
+            shifts.date = addDaysToDate(today, i)
+            if(shiftNodes[i].innerHTML.includes("No Shifts")) {
+               shifts.des = "No Shifts";
+               console.log(shifts.date + " has " + shifts.des);
+            } else {
+               const times = shiftNodes[i].childNodes[3].childNodes[1].childNodes[1].innerHTML;
+               const timesArr = times.split("-");
+               shifts.startTime = timesArr[0].trim();
+               shifts.endTime = timesArr[1].trim();
+               shifts.des = shiftNodes[i].childNodes[3].childNodes[1].childNodes[3].innerHTML;
+               console.log(shifts.date + ": " + shifts.startTime + " - " + shifts.endTime + " - " + shifts.des);
+            }
+         }
+
+         //For the Real Website
+/*       const shifts = {};
+
+         function addDaysToDate(date, days) {
+            var now = new Date(date);
+            now.setDate(now.getDate() + days);
+            return now;
+         }
+         const shiftNodes = document.querySelectorAll(".cal-day-panel")
+         const today = new Date();
+         for (let i = 0; i < shiftNodes.length; i++) {
+            shifts.date = addDaysToDate(today, i)
+            if(shiftNodes[i].innerHTML.includes("No Shifts")) {
+               shifts.des = "No Shifts";
+               console.log(shifts.date + " has " + shifts.des);
+            } else {
+               const times = shiftNodes[i].childNodes[3].childNodes[4].childNodes[1].innerHTML;
+               const timesArr = times.split("-");
+               shifts.startTime = timesArr[0].trim();
+               shifts.endTime = timesArr[1].trim();
+               shifts.des = shiftNodes[i].childNodes[3].childNodes[4].childNodes[3].innerHTML;
+               console.log(shifts.date + ": " + shifts.startTime + " - " + shifts.endTime + " - " + shifts.des);
+            }
+         }
+
+         
+         */
+      </script>
+	</body>
+</html>
