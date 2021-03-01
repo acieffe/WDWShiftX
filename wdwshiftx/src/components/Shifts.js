@@ -5,7 +5,7 @@ import ShiftDrop from './ShiftDrop';
 function shifts() {
 	return (
 		<Container>
-			<h1>Shifts</h1>
+			<Title>Shifts</Title>
 			<ShiftsContainer>
 				<ShiftsGroup>
 					<ShiftsDay></ShiftsDay>
@@ -24,8 +24,13 @@ const Container = styled.div`
 	text-align: center;
 `;
 
+const Title = styled.h1`
+	margin: 9px 0px;
+	font-style: italic;
+`;
+
 const ShiftsContainer = styled.div`
-	width: 500px;
+	width: 600px;
 	margin: 0 auto;
 `;
 

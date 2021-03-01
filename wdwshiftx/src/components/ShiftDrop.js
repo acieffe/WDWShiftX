@@ -12,6 +12,10 @@ const useStyles = makeStyles((theme) => ({
 		width: '100%',
 		margin: '0 auto 5px',
 	},
+	days: {
+		fontSize: '1.25em',
+		fontWeight: 'bolder',
+	},
 	heading: {
 		display: 'flex',
 		fontSize: '1.25em',
@@ -50,36 +54,53 @@ export default function SimpleAccordion() {
 
 	return (
 		<shiftItems>
-			{shiftItems.map((shift) => (
-				<div className={classes.root}>
-					<Accordion>
-						<AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-							<Typography className={classes.heading}>
-								<div className={classes.time}>
-									{shift.startTime} - {shift.endTime}
+			{/* Date Accordian */}
+			<div className={classes.root}>
+				<Accordion>
+					<AccordionSummary
+						expandIcon={<ExpandMoreIcon />}
+						aria-controls="panel1a-content"
+						id="panel1a-header"
+						style={{ background: 'rgba(60,100,230,0.5)' }}
+					>
+						<div className={classes.days}>Wednesday, September 22, 2021</div>
+					</AccordionSummary>
+					<AccordionDetails style={{ borderTop: '1px solid rgba(0,0,0,0.25' }}>
+						<div>
+							{shiftItems.map((shift) => (
+								<div className={classes.root}>
+									<Accordion>
+										<AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+											<Typography className={classes.heading}>
+												<div className={classes.time}>
+													{shift.startTime} - {shift.endTime}
+												</div>
+												<div className={classes.shiftName}>{shift.shiftName}</div>
+												<div className={classes.editDelete}>
+													{shift.edit} {shift.delete}
+												</div>
+											</Typography>
+										</AccordionSummary>
+										<AccordionDetails style={{ borderTop: '1px solid rgba(0,0,0,0.25' }}>
+											<Typography className={classes.details}>
+												<h3>Comments:</h3>
+												<p className={classes.comments}>{shift.comments}</p>
+												<div className={classes.owner}>
+													<h4>~{shift.owner}</h4>
+													<div className={classes.contacting}>
+														<h4 className={classes.contact}>Contact Me:</h4>
+														{shift.contact}
+													</div>
+												</div>
+											</Typography>
+										</AccordionDetails>
+									</Accordion>
 								</div>
-								<div className={classes.shiftName}>{shift.shiftName}</div>
-								<div className={classes.editDelete}>
-									{shift.edit} {shift.delete}
-								</div>
-							</Typography>
-						</AccordionSummary>
-						<AccordionDetails style={{ borderTop: '1px dotted grey' }}>
-							<Typography className={classes.details}>
-								<h3>Comments:</h3>
-								<p className={classes.comments}>{shift.comments}</p>
-								<div className={classes.owner}>
-									<h4>~{shift.owner}</h4>
-									<div className={classes.contacting}>
-										<h4 className={classes.contact}>Contact Me:</h4>
-										{shift.contact}
-									</div>
-								</div>
-							</Typography>
-						</AccordionDetails>
-					</Accordion>
-				</div>
-			))}
+							))}
+						</div>
+					</AccordionDetails>
+				</Accordion>
+			</div>
 		</shiftItems>
 	);
 }
