@@ -25,6 +25,7 @@ const Container = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	background-color: grey;
+	box-shadow: 0px 2px 5px;
 `;
 
 const LogoArea = styled.div`

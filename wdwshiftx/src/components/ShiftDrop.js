@@ -14,11 +14,34 @@ const useStyles = makeStyles((theme) => ({
 	},
 	heading: {
 		display: 'flex',
+		fontSize: '1.25em',
+		flex: '1',
 	},
 	shiftName: {
-		flex: '1',
-		textAlign: 'center',
 		paddingLeft: '9px',
+	},
+	editDelete: {
+		textAlign: 'right',
+		flex: '1',
+	},
+	details: {
+		width: '100%',
+		textAlign: 'left',
+	},
+	comments: {
+		font: 'normal smaller Montserrat ',
+		paddingBottom: '8px',
+	},
+	owner: {
+		display: 'flex',
+		justifyContent: 'space-between',
+	},
+	contacting: {
+		display: 'flex',
+		alignItems: 'center',
+	},
+	contact: {
+		marginRight: '5px',
 	},
 }));
 
@@ -36,11 +59,22 @@ export default function SimpleAccordion() {
 									{shift.startTime} - {shift.endTime}
 								</div>
 								<div className={classes.shiftName}>{shift.shiftName}</div>
+								<div className={classes.editDelete}>
+									{shift.edit} {shift.delete}
+								</div>
 							</Typography>
 						</AccordionSummary>
-						<AccordionDetails style={{ borderTop: '1px solid grey' }}>
-							<Typography>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
+						<AccordionDetails style={{ borderTop: '1px dotted grey' }}>
+							<Typography className={classes.details}>
+								<h3>Comments:</h3>
+								<p className={classes.comments}>{shift.comments}</p>
+								<div className={classes.owner}>
+									<h4>~{shift.owner}</h4>
+									<div className={classes.contacting}>
+										<h4 className={classes.contact}>Contact Me:</h4>
+										{shift.contact}
+									</div>
+								</div>
 							</Typography>
 						</AccordionDetails>
 					</Accordion>
