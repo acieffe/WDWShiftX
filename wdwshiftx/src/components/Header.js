@@ -9,9 +9,9 @@ function Header() {
 				<Logo />
 			</LogoArea>
 			<UserContainer>
-				if (true) {<LoginPrompt>Login</LoginPrompt>} else {<UserName>Hello User</UserName>}
+				{true ? <LoginPrompt>Login</LoginPrompt> : <UserName>Hello User</UserName>}
 				<UserImg>
-					<img src="https://i.imgur.com/6VBx3io.png" />
+					<img src="https://i.imgur.com/6VBx3io.png" alt="" />
 				</UserImg>
 			</UserContainer>
 		</Container>

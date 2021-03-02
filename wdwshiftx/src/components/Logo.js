@@ -14,7 +14,7 @@ function Logo() {
 			</span>
 			<svg id="ShiftXLogo" viewBox="50 0 1500 500">
 				<defs>
-					<linearGradient id="xmas" spreadMethod="pad" id="gradient" x1="0%" y1="0%" x2="55%" y2="125%">
+					<linearGradient id="xmas" spreadMethod="pad" x1="0%" y1="0%" x2="55%" y2="125%">
 						<stop stopColor="red" offset="0%" />
 						<stop stopColor="red" offset="10%" />
 						<stop stopColor="white" offset="10%" />
@@ -36,7 +36,7 @@ function Logo() {
 						<stop stopColor="white" offset="90%" />
 						<stop stopColor="white" offset="100%" />
 					</linearGradient>
-					<linearGradient id="fourth" spreadMethod="pad" id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+					<linearGradient id="fourth" spreadMethod="pad" x1="0%" y1="0%" x2="0%" y2="100%">
 						<stop stopColor="red" offset="0%" />
 						<stop stopColor="red" offset="20%" />
 						<stop stopColor="white" offset="20%" />
@@ -48,7 +48,7 @@ function Logo() {
 						<stop stopColor="red" offset="80%" />
 						<stop stopColor="red" offset="100%" />
 					</linearGradient>
-					<linearGradient id="mickey" spreadMethod="pad" id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+					<linearGradient id="mickey" spreadMethod="pad" x1="0%" y1="0%" x2="0%" y2="100%">
 						<stop stopColor="black" offset="0%" />
 						<stop stopColor="black" offset="50%" />
 						<stop stopColor="red" offset="50%" />

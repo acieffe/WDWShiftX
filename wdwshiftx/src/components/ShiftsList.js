@@ -96,9 +96,6 @@ export default function SimpleAccordion() {
 	return (
 		<shiftItems>
 			{nums.map((value) => {
-				{
-					/* cylce through array of 14 numbers to display the next 2 weeks */
-				}
 				return (
 					<div className={classes.root}>
 						<Accordion defaultExpanded="true">

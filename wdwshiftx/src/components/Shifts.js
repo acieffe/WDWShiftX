@@ -1,16 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import ShiftDrop from './ShiftDrop';
+import ShiftsList from './ShiftsList';
 
 function shifts() {
 	return (
 		<Container>
 			<Title>Shifts</Title>
 			<ShiftsContainer>
-				<ShiftsGroup>
-					<ShiftsDay></ShiftsDay>
-					<ShiftDrop />
-				</ShiftsGroup>
+				<ShiftsList />
 			</ShiftsContainer>
 		</Container>
 	);
@@ -33,7 +30,3 @@ const ShiftsContainer = styled.div`
 	width: 600px;
 	margin: 0 auto;
 `;
-
-const ShiftsGroup = styled.div``;
-
-const ShiftsDay = styled.div``;
