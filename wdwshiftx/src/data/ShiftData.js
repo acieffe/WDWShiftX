@@ -4,8 +4,8 @@ import PhoneIcon from '@material-ui/icons/Phone';
 
 export const shiftItems = [
 	{
-		startTime: '14:15',
-		endTime: '20:45',
+		start: Date.parse('01 Mar 2021 06:30:00 GMT-0500'),
+		end: Date.parse('01 Mar 2021 20:45:00 GMT-0500'),
 		shiftName: 'MK Main St',
 		edit: <EditIcon fontSize="small" color="disabled" />,
 		delete: <DeleteForeverIcon fontSize="small" color="disabled" />,
@@ -15,8 +15,8 @@ export const shiftItems = [
 			'I need this shift to be gone, not traded, GONE! I need this shift to be gone, not traded, GONE! I need this shift to be gone, not traded, GONE!',
 	},
 	{
-		startTime: '13:15',
-		endTime: '22:45',
+		start: Date.parse('02 Mar 2021 22:15:00 GMT-0500'),
+		end: Date.parse('02 Mar 2021 23:00:00 GMT-0500'),
 		shiftName: 'EP Future World',
 		edit: <EditIcon fontSize="small" color="disabled" />,
 		delete: <DeleteForeverIcon fontSize="small" color="disabled" />,
@@ -25,8 +25,8 @@ export const shiftItems = [
 		comments: 'I need this shift to be gone, not traded, GONE!',
 	},
 	{
-		startTime: '12:15',
-		endTime: '18:45',
+		start: Date.parse('02 Mar 2021 14:15:00 GMT-0500'),
+		end: Date.parse('02 Mar 2021 20:45:00 GMT-0500'),
 		shiftName: `HS Galaxy's Edge`,
 		edit: <EditIcon fontSize="small" color="disabled" />,
 		delete: <DeleteForeverIcon fontSize="small" color="disabled" />,
@@ -35,8 +35,8 @@ export const shiftItems = [
 		comments: 'I need this shift to be gone, not traded, GONE!',
 	},
 	{
-		startTime: '10:15',
-		endTime: '16:45',
+		start: Date.parse('03 Mar 2021 14:15:00 GMT-0500'),
+		end: Date.parse('03 Mar 2021 20:45:00 GMT-0500'),
 		shiftName: 'MK Main St',
 		edit: <EditIcon fontSize="small" color="disabled" />,
 		delete: <DeleteForeverIcon fontSize="small" color="disabled" />,
@@ -45,8 +45,8 @@ export const shiftItems = [
 		comments: 'I need this shift to be gone, not traded, GONE!',
 	},
 	{
-		startTime: '14:15',
-		endTime: '22:45',
+		start: Date.parse('04 Mar 2021 14:15:00 GMT-0500'),
+		end: Date.parse('04 Mar 2021 20:45:00 GMT-0500'),
 		shiftName: 'MK Main St',
 		edit: <EditIcon fontSize="small" color="disabled" />,
 		delete: <DeleteForeverIcon fontSize="small" color="disabled" />,

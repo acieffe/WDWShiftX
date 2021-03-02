@@ -19,7 +19,7 @@ function App() {
 								<Shift />
 							</Route>
 							<Route path="/">
-								<Login />
+								<Shift />
 							</Route>
 						</Switch>
 					</Main>
