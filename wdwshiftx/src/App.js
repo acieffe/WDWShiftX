@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Shift from './components/Shifts';
 import Login from './components/Login';
+import NewShift from './components/NewShift';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import styled from 'styled-components';
@@ -20,6 +21,9 @@ function App() {
 							</Route>
 							<Route path="/">
 								<Login />
+							</Route>
+							<Route path="/newshift">
+								<NewShift />
 							</Route>
 						</Switch>
 					</Main>

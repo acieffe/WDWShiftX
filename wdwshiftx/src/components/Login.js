@@ -1,7 +1,11 @@
 import React from 'react';
 
 function Login() {
-	return <div>Login Here</div>;
+	return (
+		<div>
+			<a href="/shifts">Shifts</a>
+		</div>
+	);
 }
 
 export default Login;
