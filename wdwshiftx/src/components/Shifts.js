@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import ShiftsList from './ShiftsList';
+import AddShift from './AddShift';
 
 function shifts() {
 	return (
 		<Container>
-			<Title>Shifts</Title>
 			<ShiftsContainer>
+				<TitleHeader>
+					<Title>Available Shifts</Title>
+					<AddShift />
+				</TitleHeader>
+
 				<ShiftsList />
 			</ShiftsContainer>
 		</Container>
@@ -21,8 +26,15 @@ const Container = styled.div`
 	text-align: center;
 `;
 
+const TitleHeader = styled.div`
+	display: flex;
+	align-items: center;
+	margin: 0 auto;
+`;
+
 const Title = styled.h1`
-	margin: 9px 0px;
+	margin: 9px auto;
+	padding-left: 2em;
 	font-style: italic;
 `;
 

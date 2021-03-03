@@ -19,11 +19,11 @@ function App() {
 							<Route path="/shifts">
 								<Shift />
 							</Route>
-							<Route path="/">
-								<Login />
-							</Route>
 							<Route path="/newshift">
 								<NewShift />
+							</Route>
+							<Route path="/">
+								<Login />
 							</Route>
 						</Switch>
 					</Main>
