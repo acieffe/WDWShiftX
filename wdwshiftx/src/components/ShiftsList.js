@@ -6,6 +6,8 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { shiftItems } from '../data/ShiftData';
+import EditShiftBtn from '../components/EditShiftBtn';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -28,8 +30,18 @@ const useStyles = makeStyles((theme) => ({
 		paddingLeft: '9px',
 	},
 	editDelete: {
-		textAlign: 'right',
+		display: 'flex',
+		position: 'absolute',
+		right: '50px',
 		flex: '1',
+		alignItems: 'baseline',
+	},
+	delete: {
+		fontSize: 'large',
+		color: 'rgba(0,0,0,0.25)',
+		'&:hover': {
+			color: 'black',
+		},
 	},
 	details: {
 		width: '100%',
@@ -119,7 +131,13 @@ export default function SimpleAccordion() {
 														</div>
 														<div className={classes.shiftName}>{shift.shiftName}</div>
 														<div className={classes.editDelete}>
-															{shift.edit} {shift.delete}
+															<EditShiftBtn />
+															<DeleteForeverIcon
+																className={classes.delete}
+																onClick={(event) => {
+																	event.stopPropagation();
+																}}
+															/>
 														</div>
 													</Typography>
 												</AccordionSummary>

@@ -70,7 +70,7 @@ export default function DateAndTimePickers() {
 			/>
 			<div className={classes.btn}>
 				<Button variant="contained" color="primary">
-					Add Shift
+					Edit Shift
 				</Button>
 			</div>
 		</form>

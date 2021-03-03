@@ -1,20 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import NewShiftInput from './NewShiftInput';
+import EditShiftInput from './EditShiftInput';
 
-function NewShift() {
+function EditShift() {
 	return (
 		<Container>
-			<Title>Add Shift To:</Title>
+			<Title>Edit Shift For:</Title>
 			<SubTitle>Really Long Group Name</SubTitle>
 			<FormContainer>
-				<NewShiftInput />
+				<EditShiftInput />
 			</FormContainer>
 		</Container>
 	);
 }
 
-export default NewShift;
+export default EditShift;
 
 const Container = styled.div`
 	display: grid;

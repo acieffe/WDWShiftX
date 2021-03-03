@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import NewShift from './NewShift';
-import EventIcon from '@material-ui/icons/Event';
+import EditShift from './EditShift';
+import EditIcon from '@material-ui/icons/Edit';
 
 function getModalStyle() {
 	return {
@@ -25,6 +25,13 @@ const useStyles = makeStyles((theme) => ({
 		},
 		'&:hover': {
 			outline: 'none',
+		},
+	},
+	edit: {
+		fontSize: 'large',
+		color: 'rgba(0,0,0,0.25)',
+		'&:hover': {
+			color: 'black',
 		},
 	},
 	openModal: {
@@ -50,17 +57,28 @@ export default function SimpleModal() {
 
 	const body = (
 		<div style={modalStyle} className={classes.paper}>
-			<NewShift />
+			<EditShift />
 		</div>
 	);
 
 	return (
 		<div>
-			<div className={classes.openModal} onClick={handleOpen}>
-				<EventIcon />
-				<span>&nbsp;Add Shift</span>
-			</div>
-			<Modal open={open} onClose={handleClose} aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description">
+			<EditIcon
+				className={classes.edit}
+				onClick={(event) => {
+					event.stopPropagation();
+					setOpen(true);
+				}}
+			/>
+			<Modal
+				open={open}
+				onClose={handleClose}
+				aria-labelledby="simple-modal-title"
+				aria-describedby="simple-modal-description"
+				onClick={(event) => {
+					event.stopPropagation();
+				}}
+			>
 				{body}
 			</Modal>
 		</div>
