@@ -4,7 +4,7 @@ This project is intended to replace the facebook alternatives for posting availa
 
 ## Problems with the current solution
 
-Facebook is the current choice for Disney Cast Members to post shifts and trade with fellow CM's. The major issue with Facebook groups is that shifts get lost in the shuffle of other shifts and unrelated posts in the group news feed. Another issue is that people tend to post shifts with either a picture or with text that follows no uniform structure making it hard to found in the sea of other posts. Too rare, will someone delete their post after the shift has been traded or given away. The news feed is littered with unrelevant out outdated posts. Lastly, Facebook has come under fire for political sensorship and being linked to depression in its users, causing many to abandon their accounts.
+Facebook is the current choice for Disney Cast Members to post shifts and trade with fellow CM's. The major issue with Facebook groups is that shifts get lost in the shuffle of other shifts and unrelated posts in the group news feed. Another issue is that people tend to post shifts with either a picture or with text that follows no uniform structure making it hard to found in the sea of other posts. Too rare, will someone delete their post after the shift has been traded or given away. The news feed is littered with irrelevant, out-outdated posts. Lastly, Facebook has come under fire for political sensorship and being linked to depression in its users, causing many to abandon their accounts.
 
 ## The Solution in ShiftX
 
