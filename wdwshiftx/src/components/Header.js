@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Logo from './Logo';
+import Login from './Login';
+import Register from './Register';
 
 function Header() {
 	return (
@@ -9,7 +11,15 @@ function Header() {
 				<Logo />
 			</LogoArea>
 			<UserContainer>
-				{true ? <LoginPrompt>Login</LoginPrompt> : <UserName>Hello User</UserName>}
+				{true ? (
+					<LoginPrompt>
+						<Login />
+						&nbsp;
+						<Register />
+					</LoginPrompt>
+				) : (
+					<UserName>Hello User</UserName>
+				)}
 				<UserImg>
 					<img src="https://i.imgur.com/6VBx3io.png" alt="" />
 				</UserImg>
@@ -21,11 +31,15 @@ function Header() {
 export default Header;
 
 const Container = styled.div`
+	width: 100%;
+	position: fixed;
+	top: 0px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	background-color: grey;
 	box-shadow: 0px 2px 5px;
+	z-index: 40;
 `;
 
 const LogoArea = styled.div`

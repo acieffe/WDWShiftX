@@ -1,11 +1,14 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Shift from './components/Shifts';
-import Login from './components/Login';
 import NewShift from './components/NewShift';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import styled from 'styled-components';
+import Ads from './components/Ads';
+import Landing from './components/Landing';
+import SignUp from './components/SignUp';
+import SignIn from './components/SignIn';
 
 function App() {
 	return (
@@ -22,12 +25,21 @@ function App() {
 							<Route path="/newshift">
 								<NewShift />
 							</Route>
+							<Route path="/signup">
+								<SignUp />
+							</Route>
+							<Route path="/signin">
+								<SignIn />
+							</Route>
 							<Route path="/">
-								<Login />
+								<Landing />
 							</Route>
 						</Switch>
 					</Main>
 				</Container>
+				<AdsContainer>
+					<Ads />
+				</AdsContainer>
 			</Router>
 		</div>
 	);
@@ -45,4 +57,13 @@ const Container = styled.div`
 const Main = styled.div`
 	display: grid;
 	grid-template-columns: 260px auto;
+`;
+
+const AdsContainer = styled.div`
+	width: 100%;
+	background-color: pink;
+	box-shadow: 0px -2px 5px;
+	position: fixed;
+	bottom: 0px;
+	z-index: 50;
 `;

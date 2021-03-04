@@ -24,6 +24,7 @@ const Container = styled.div`
 	display: grid;
 	grid-template-rows: min-content auto;
 	text-align: center;
+	margin: 40px 0 100px;
 `;
 
 const TitleHeader = styled.div`
