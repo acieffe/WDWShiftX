@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ShiftsList from './ShiftsList';
 import AddShift from './AddShift';
+import Filter from './Filter';
 
 function shifts() {
 	return (
@@ -11,7 +12,7 @@ function shifts() {
 					<Title>Available Shifts</Title>
 					<AddShift />
 				</TitleHeader>
-
+				<Filter />
 				<ShiftsList />
 			</ShiftsContainer>
 		</Container>

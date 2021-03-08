@@ -9,6 +9,7 @@ export const shiftItems = [
 		contact: <PhoneIcon fontSize="small" color="black" />,
 		comments:
 			'I need this shift to be gone, not traded, GONE! I need this shift to be gone, not traded, GONE! I need this shift to be gone, not traded, GONE!',
+		keywords: ['PhotoPass Photographer (DPI)', 'Magic Kingdom (MK)', 'Main Street'],
 	},
 	{
 		start: Date.parse('02 Mar 2021 22:15:00 GMT-0500'),
@@ -17,6 +18,7 @@ export const shiftItems = [
 		owner: 'Ace Baugh',
 		contact: <PhoneIcon fontSize="small" color="disabled" />,
 		comments: 'I need this shift to be gone, not traded, GONE!',
+		keywords: ['PhotoPass Photographer (DPI)', 'Epcot (EP)', `FUTURE WORLD`],
 	},
 	{
 		start: Date.parse('02 Mar 2021 14:15:00 GMT-0500'),
@@ -25,6 +27,7 @@ export const shiftItems = [
 		owner: 'Ace Baugh',
 		contact: <PhoneIcon fontSize="small" color="disabled" />,
 		comments: 'I need this shift to be gone, not traded, GONE!',
+		keywords: ['PhotoPass Photographer (DPI)', `Disney's Hollywood Studios (DHS)`, `Galaxy's Edge`],
 	},
 	{
 		start: Date.parse('03 Mar 2021 14:15:00 GMT-0500'),
@@ -33,6 +36,7 @@ export const shiftItems = [
 		owner: 'Ace Baugh',
 		contact: <PhoneIcon fontSize="small" color="disabled" />,
 		comments: 'I need this shift to be gone, not traded, GONE!',
+		keywords: ['PhotoPass Photographer (DPI)', 'Magic Kingdom (MK)', 'Main Street'],
 	},
 	{
 		start: Date.parse('04 Mar 2021 14:15:00 GMT-0500'),
@@ -41,5 +45,6 @@ export const shiftItems = [
 		owner: 'Ace Baugh',
 		contact: <PhoneIcon fontSize="small" color="disabled" />,
 		comments: 'I need this shift to be gone, not traded, GONE!',
+		keywords: ['PhotoPass Photographer (DPI)', 'Magic Kingdom (MK)', 'Main Street'],
 	},
 ];

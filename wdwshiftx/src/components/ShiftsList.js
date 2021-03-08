@@ -8,6 +8,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { shiftItems } from '../data/ShiftData';
 import EditShiftBtn from '../components/EditShiftBtn';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import Divider from '@material-ui/core/Divider';
+import Chip from '@material-ui/core/Chip';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -70,6 +72,19 @@ const useStyles = makeStyles((theme) => ({
 	contact: {
 		marginRight: '5px',
 	},
+	divide: {
+		margin: '8px 0px',
+	},
+	keywordChips: {
+		paddingTop: '5px',
+		display: 'flex',
+		justifyContent: 'left',
+		alignItems: 'center',
+		flexWrap: 'wrap',
+		'& > *': {
+			margin: theme.spacing(0.5),
+		},
+	},
 }));
 
 // Gives the date and adds the next 14 days
@@ -108,6 +123,7 @@ export default function SimpleAccordion() {
 	return (
 		<shiftItems>
 			{nums.map((value) => {
+				// Cycles through the next 14 days
 				return (
 					<div className={classes.root}>
 						<Accordion defaultExpanded="true">
@@ -154,6 +170,13 @@ export default function SimpleAccordion() {
 																<h4 className={classes.contact}>Contact Me:</h4>
 																{shift.contact}
 															</div>
+														</div>
+														<Divider className={classes.divide} />
+														<div className={classes.keywordChips}>
+															Keywords: <Chip variant="outlined" size="small" label={shift.shiftName} />
+															{shift.keywords.map((keyword) => (
+																<Chip variant="outlined" size="small" label={keyword} />
+															))}
 														</div>
 													</Typography>
 												</AccordionDetails>
