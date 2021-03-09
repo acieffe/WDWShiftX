@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Shift from './components/Shifts';
 import NewShift from './components/NewShift';
 import Header from './components/Header';
-import Sidebar from './components/Sidebar';
 import styled from 'styled-components';
 import Ads from './components/Ads';
 import Landing from './components/Landing';
@@ -17,7 +16,6 @@ function App() {
 				<Container>
 					<Header />
 					<Main>
-						<Sidebar />
 						<Switch>
 							<Route path="/shifts">
 								<Shift />
@@ -55,8 +53,7 @@ const Container = styled.div`
 `;
 
 const Main = styled.div`
-	display: grid;
-	grid-template-columns: 260px auto;
+	margin: 0 auto;
 `;
 
 const AdsContainer = styled.div`

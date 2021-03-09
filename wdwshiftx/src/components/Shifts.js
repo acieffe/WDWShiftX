@@ -26,6 +26,7 @@ const Container = styled.div`
 	grid-template-rows: min-content auto;
 	text-align: center;
 	margin: 40px 0 100px;
+	padding: 0 10px;
 `;
 
 const TitleHeader = styled.div`
@@ -43,4 +44,5 @@ const Title = styled.h1`
 const ShiftsContainer = styled.div`
 	width: 600px;
 	margin: 0 auto;
+	padding-bottom: 100px;
 `;
