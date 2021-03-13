@@ -2,13 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import NewShiftInput from './NewShiftInput';
 
-function NewShift() {
+function NewShift(props) {
 	return (
 		<Container>
-			<Title>Add Shift To:</Title>
-			<SubTitle>Really Long Group Name</SubTitle>
+			<Title>Add Shift:</Title>
 			<FormContainer>
-				<NewShiftInput />
+				<NewShiftInput keywords={props.keywords} />
 			</FormContainer>
 		</Container>
 	);
@@ -23,10 +22,6 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-	font-style: italic;
-`;
-
-const SubTitle = styled.h3`
 	font-style: italic;
 `;
 

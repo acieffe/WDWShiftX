@@ -1,4 +1,5 @@
 import './App.css';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Shift from './components/Shifts';
 import NewShift from './components/NewShift';
@@ -8,8 +9,52 @@ import Ads from './components/Ads';
 import Landing from './components/Landing';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
+import db from './firebase';
 
 function App() {
+	const [shifts, setShifts] = useState([]);
+
+	const getShifts = () => {
+		db.collection('shifts')
+			.orderBy('start', 'asc')
+			.onSnapshot((snapshot) => {
+				setShifts(
+					snapshot.docs.map((doc) => {
+						return {
+							id: doc.id,
+							shiftName: doc.data().shiftName,
+							start: new Date(doc.data().start * 1000),
+							end: new Date(doc.data().end * 1000),
+							user: doc.data().user,
+							comments: doc.data().comments,
+							keywords: doc.data().keywords,
+						};
+					})
+				);
+			});
+	};
+
+	const [keywords, setKeywords] = useState([]);
+
+	const getKeywords = () => {
+		db.collection('keywords')
+			.orderBy('slug', 'asc')
+			.onSnapshot((snapshot) => {
+				setKeywords(
+					snapshot.docs.map((doc) => {
+						return {
+							keyword: doc.data().keyword,
+						};
+					})
+				);
+			});
+	};
+
+	useEffect(() => {
+		getShifts();
+		getKeywords();
+	}, []);
+
 	return (
 		<div className="App">
 			<Router>
@@ -18,7 +63,7 @@ function App() {
 					<Main>
 						<Switch>
 							<Route path="/shifts">
-								<Shift />
+								<Shift shifts={shifts} keywords={keywords} />
 							</Route>
 							<Route path="/newshift">
 								<NewShift />

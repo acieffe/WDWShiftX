@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import InfoIcon from '@material-ui/icons/Info';
+import Chip from '@material-ui/core/Chip';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -41,9 +43,17 @@ const useStyles = makeStyles((theme) => ({
 		right: '20px',
 		zIndex: '80',
 	},
+	keywords: {
+		width: '100%',
+		'& > * + *': {
+			marginTop: theme.spacing(3),
+		},
+		paddingBottom: '8px',
+		marginTop: theme.spacing(2),
+	},
 }));
 
-export default function DateAndTimePickers() {
+export default function DateAndTimePickers(props) {
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(false);
 	const handleTooltipClose = () => {
@@ -62,6 +72,7 @@ export default function DateAndTimePickers() {
 					label="Start Time"
 					required
 					type="datetime-local"
+					step="3000"
 					className={classes.startTime}
 					InputLabelProps={{
 						shrink: true,
@@ -107,6 +118,23 @@ export default function DateAndTimePickers() {
 					rows={4}
 					defaultValue="Additional Information"
 					fullWidth
+				/>
+			</div>
+			<div className={classes.keywords}>
+				<Autocomplete
+					selectOnFocus
+					clearOnBlur
+					handleHomeEndKeys
+					multiple
+					id="tags-outlined"
+					options={props.keywords.map((option) => option.keyword)}
+					// This is where the User Default Keywords will show up
+					defaultValue={['1900 Park Fare']}
+					freeSolo
+					renderTags={(value, getTagProps) =>
+						value.map((option, index) => <Chip variant="outlined" label={option} {...getTagProps({ index })} />)
+					}
+					renderInput={(params) => <TextField {...params} variant="outlined" label="Shift Keywords" placeholder="Roles, Locations, Etc." />}
 				/>
 			</div>
 			<div className={classes.btn}>

@@ -5,11 +5,11 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { ShiftItems } from '../data/ShiftData';
 import EditShiftBtn from './EditShiftBtn';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Divider from '@material-ui/core/Divider';
 import Chip from '@material-ui/core/Chip';
+import PhoneIcon from '@material-ui/icons/Phone';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -103,57 +103,64 @@ function timeDiff(time1, time2) {
 }
 
 // Template for Shifts with mapping through each shift that are in the next 2 weeks
-export default function SimpleAccordion() {
+export default function SimpleAccordion(props) {
 	const classes = useStyles();
+	const d = new Date();
 
 	return (
 		<shiftList>
-			{ShiftItems.map((shift) => (
-				<div className={classes.root} key={shift.toString()}>
-					<Accordion>
-						<AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-							<Typography className={classes.heading}>
-								<div className={classes.time}>
-									{postTime(shift.start)} - {postTime(shift.end)}
-								</div>
-								<div className={classes.shiftName}>{shift.shiftName}</div>
-								<div className={classes.editDelete}>
-									<EditShiftBtn />
-									<DeleteForeverIcon
-										className={classes.delete}
-										onClick={(event) => {
-											event.stopPropagation();
-										}}
-									/>
-								</div>
-							</Typography>
-						</AccordionSummary>
-						<AccordionDetails style={{ borderTop: '1px solid rgba(0,0,0,0.25' }}>
-							<Typography className={classes.details}>
-								<div className={classes.information}>
-									<h3 className={classes.detailTop}>Comments:</h3>
-									<h5>Duration: {timeDiff(shift.start, shift.end)} hours</h5>
-								</div>
-								<p className={classes.comments}>{shift.comments}</p>
-								<div className={classes.owner}>
-									<h4>~{shift.owner}</h4>
-									<div className={classes.contacting}>
-										<h4 className={classes.contact}>Contact Me:</h4>
-										{shift.contact}
-									</div>
-								</div>
-								<Divider className={classes.divide} />
-								<div className={classes.keywordChips}>
-									Keywords: <Chip variant="outlined" size="small" label={shift.shiftName} />
-									{shift.keywords.map((keyword) => (
-										<Chip variant="outlined" size="small" label={keyword} />
-									))}
-								</div>
-							</Typography>
-						</AccordionDetails>
-					</Accordion>
-				</div>
-			))}
+			{props.shifts.map((shift) => {
+				if (shift.start.getDate() === d.getDate() + props.date) {
+					return (
+						<div className={classes.root}>
+							<Accordion key={shift.id}>
+								<AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+									<Typography className={classes.heading}>
+										<div className={classes.time}>
+											{postTime(shift.start)} - {postTime(shift.end)}
+										</div>
+										<div className={classes.shiftName}>{shift.shiftName}</div>
+										<div className={classes.editDelete}>
+											<EditShiftBtn />
+											<DeleteForeverIcon
+												className={classes.delete}
+												onClick={(event) => {
+													event.stopPropagation();
+												}}
+											/>
+										</div>
+									</Typography>
+								</AccordionSummary>
+								<AccordionDetails style={{ borderTop: '1px solid rgba(0,0,0,0.25' }}>
+									<Typography className={classes.details}>
+										<div className={classes.information}>
+											<h3 className={classes.detailTop}>Comments:</h3>
+											<h5>Duration: {timeDiff(shift.start, shift.end)} hours</h5>
+										</div>
+										<p className={classes.comments}>{shift.comments}</p>
+										<div className={classes.owner}>
+											<h4>~{shift.user}</h4>
+											<div className={classes.contacting}>
+												<h4 className={classes.contact}>Contact Me:</h4>
+												<PhoneIcon fontSize="small" color="disabled" />
+											</div>
+										</div>
+										<Divider className={classes.divide} />
+										<div className={classes.keywordChips}>
+											Keywords: <Chip variant="outlined" size="small" label={shift.shiftName} />
+											{shift.keywords.map((keyword) => (
+												<Chip variant="outlined" size="small" label={keyword} />
+											))}
+										</div>
+									</Typography>
+								</AccordionDetails>
+							</Accordion>
+						</div>
+					);
+				} else {
+					return '';
+				}
+			})}
 		</shiftList>
 	);
 }

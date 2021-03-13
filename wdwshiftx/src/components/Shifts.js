@@ -4,16 +4,16 @@ import ShiftDay from './ShiftDay';
 import AddShift from './AddShift';
 import Filter from './Filter';
 
-function shifts() {
+function shifts(props) {
 	return (
 		<Container>
 			<ShiftsContainer>
 				<TitleHeader>
 					<Title>Available Shifts</Title>
-					<AddShift />
+					<AddShift keywords={props.keywords} />
 				</TitleHeader>
-				<Filter />
-				<ShiftDay />
+				<Filter keywords={props.keywords} />
+				<ShiftDay shifts={props.shifts} />
 			</ShiftsContainer>
 		</Container>
 	);
