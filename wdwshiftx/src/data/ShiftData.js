@@ -1,6 +1,6 @@
 import PhoneIcon from '@material-ui/icons/Phone';
 
-export const shiftItems = [
+export const ShiftItems = [
 	{
 		start: Date.parse('01 Mar 2021 06:30:00 GMT-0500'),
 		end: Date.parse('01 Mar 2021 20:45:00 GMT-0500'),

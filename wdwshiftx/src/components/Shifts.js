@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ShiftsList from './ShiftsList';
+import ShiftDay from './ShiftDay';
 import AddShift from './AddShift';
 import Filter from './Filter';
 
@@ -13,7 +13,7 @@ function shifts() {
 					<AddShift />
 				</TitleHeader>
 				<Filter />
-				<ShiftsList />
+				<ShiftDay />
 			</ShiftsContainer>
 		</Container>
 	);

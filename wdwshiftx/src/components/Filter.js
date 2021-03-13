@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Tags() {
-	const [value, setValue] = React.useState(null);
+	const [setValue] = React.useState(null); // need for later values
 	const [open, toggleOpen] = React.useState(false);
 	const classes = useStyles();
 

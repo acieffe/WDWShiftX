@@ -520,6 +520,7 @@ const AllKeywords = [
 	{ keyword: `La Boutique` },
 	{ keyword: `La Cantina de San Angel` },
 	{ keyword: `La Cava del Tequila` },
+	{ keyword: `La Creperie de Paris` },
 	{ keyword: `La Gemma Elegante` },
 	{ keyword: `La Hacienda de San Angel` },
 	{ keyword: `La Princesa de Cristal - Caribbean Plaza` },
