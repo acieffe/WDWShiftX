@@ -5,45 +5,32 @@ import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import InfoIcon from '@material-ui/icons/Info';
+import Grid from '@material-ui/core/Grid';
+import Keywords from './Keywords';
 
 const useStyles = makeStyles((theme) => ({
 	container: {
-		display: 'flex',
-		flexWrap: 'wrap',
-		padding: '10px',
-	},
-	textField: {
-		margin: '18px auto',
-	},
-	timeInput: {
-		flex: '1',
-	},
-	startTime: {
-		width: '45%',
-		marginRight: '5%',
-	},
-	endTime: {
-		width: '45%',
-		marginLeft: '5%',
+		paddingTop: '12px',
 	},
 	btn: {
 		margin: '20px auto 0px',
 	},
+	time: {
+		marginBottom: theme.spacing(1),
+	},
 	inputs: {
-		marginTop: '10px',
+		marginBottom: theme.spacing(3),
 	},
-	commentSection: {
-		width: '100%',
-	},
+	commentSection: {},
 	commentHelp: {
 		position: 'absolute',
-		top: '50%',
-		right: '20px',
+		top: '10px',
+		right: '10px',
 		zIndex: '80',
 	},
 }));
 
-export default function DateAndTimePickers() {
+function EditShiftInput(props) {
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(false);
 	const handleTooltipClose = () => {
@@ -56,30 +43,7 @@ export default function DateAndTimePickers() {
 
 	return (
 		<form className={classes.container} noValidate>
-			<div className={classes.timeInput}>
-				<TextField
-					id="start-datetime-local"
-					label="Start Time"
-					required
-					type="datetime-local"
-					className={classes.startTime}
-					InputLabelProps={{
-						shrink: true,
-					}}
-				/>
-				<TextField
-					id="end-datetime-local"
-					label="End Time"
-					required
-					type="datetime-local"
-					className={classes.endTime}
-					InputLabelProps={{
-						shrink: true,
-					}}
-				/>
-			</div>
-			<TextField id="standard" label="Shift Name" className={classes.inputs} required fullWidth />
-			<div className={classes.commentSection}>
+			<Grid className={classes.time} container spacing={3}>
 				<ClickAwayListener onClickAway={handleTooltipClose}>
 					<div>
 						<Tooltip
@@ -99,16 +63,49 @@ export default function DateAndTimePickers() {
 						</Tooltip>
 					</div>
 				</ClickAwayListener>
+				<Grid item xs={6}>
+					<TextField
+						id="start"
+						name="start"
+						label="Start Time"
+						required
+						type="datetime-local"
+						step="3000"
+						InputLabelProps={{
+							shrink: true,
+						}}
+					/>
+				</Grid>
+				<Grid item xs={6}>
+					<TextField
+						id="end"
+						name="end"
+						label="End Time"
+						required
+						type="datetime-local"
+						InputLabelProps={{
+							shrink: true,
+						}}
+					/>
+				</Grid>
+			</Grid>
+			<Grid container>
+				<Grid item xs={12}>
+					<TextField id="shiftName" name="shiftName" label="Shift Name" className={classes.inputs} required fullWidth />
+				</Grid>
+			</Grid>
+			<div className={classes.commentSection}>
 				<TextField
-					id="standard-multiline-static"
+					id="comments"
+					name="comments"
 					className={classes.inputs}
 					label="Comments"
 					multiline
-					rows={4}
-					defaultValue="Additional Information"
+					placeholder="Additional Information"
 					fullWidth
 				/>
 			</div>
+			<Keywords keywords={props.keywords} />
 			<div className={classes.btn}>
 				<Button variant="contained" color="primary">
 					Edit Shift
@@ -117,3 +114,5 @@ export default function DateAndTimePickers() {
 		</form>
 	);
 }
+
+export default EditShiftInput;

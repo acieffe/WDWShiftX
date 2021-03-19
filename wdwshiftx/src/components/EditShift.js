@@ -1,36 +1,32 @@
 import React from 'react';
-import styled from 'styled-components';
+import { makeStyles } from '@material-ui/core/styles';
 import EditShiftInput from './EditShiftInput';
 
-function EditShift() {
+const useStyles = makeStyles(() => ({
+	container: {
+		display: 'grid',
+		gridTemplateRows: 'minContent auto',
+		textAlign: 'center',
+	},
+	title: {
+		fontStyle: 'italic',
+	},
+	formContainer: {
+		margin: '0 auto',
+	},
+}));
+
+function EditShift(props) {
+	const classes = useStyles();
+
 	return (
-		<Container>
-			<Title>Edit Shift For:</Title>
-			<SubTitle>Really Long Group Name</SubTitle>
-			<FormContainer>
-				<EditShiftInput />
-			</FormContainer>
-		</Container>
+		<div className={classes.container}>
+			<h1 className={classes.title}>Edit Shift:</h1>
+			<div className={classes.formContainer}>
+				<EditShiftInput keywords={props.keywords} />
+			</div>
+		</div>
 	);
 }
 
 export default EditShift;
-
-const Container = styled.div`
-	display: grid;
-	grid-template-rows: min-content auto;
-	text-align: center;
-`;
-
-const Title = styled.h1`
-	font-style: italic;
-`;
-
-const SubTitle = styled.h3`
-	font-style: italic;
-`;
-
-const FormContainer = styled.div`
-	width: 450px;
-	margin: 0 auto;
-`;

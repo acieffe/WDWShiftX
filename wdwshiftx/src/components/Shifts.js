@@ -33,7 +33,7 @@ function Shifts(props) {
 				<AddShift keywords={props.keywords} />
 			</div>
 			<Keywords keywords={props.keywords} />
-			<ShiftDay shifts={props.shifts} />
+			<ShiftDay shifts={props.shifts} keywords={props.keywords} />
 		</div>
 	);
 }

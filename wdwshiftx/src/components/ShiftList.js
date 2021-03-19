@@ -121,7 +121,7 @@ function ShiftList(props) {
 										</div>
 										<div className={classes.shiftName}>{shift.shiftName}</div>
 										<div className={classes.editDelete}>
-											<EditShiftBtn />
+											<EditShiftBtn keywords={props.keywords} />
 											<DeleteForeverIcon
 												className={classes.delete}
 												onClick={(event) => {

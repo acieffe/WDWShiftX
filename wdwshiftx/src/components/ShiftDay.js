@@ -47,7 +47,7 @@ function ShiftDay(props) {
 								<div className={classes.days}>{postDate(value)}</div>
 							</AccordionSummary>
 							<AccordionDetails>
-								<ShiftList shifts={props.shifts} date={value} />
+								<ShiftList shifts={props.shifts} date={value} keywords={props.keywords} />
 							</AccordionDetails>
 						</Accordion>
 					</div>
