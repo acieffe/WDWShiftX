@@ -9,6 +9,7 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Divider from '@material-ui/core/Divider';
 import Chip from '@material-ui/core/Chip';
 import PhoneIcon from '@material-ui/icons/Phone';
+import UserName from './UserName';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -138,7 +139,9 @@ function ShiftList(props) {
 										</div>
 										<div className={classes.comments}>{shift.comments}</div>
 										<div className={classes.owner}>
-											<div className={classes.userName}>~{shift.user}</div>
+											<div className={classes.userName}>
+												<UserName shifts={props.shifts} />
+											</div>
 											<div className={classes.contacting}>
 												<div className={classes.contact}>Contact Me:</div>
 												<PhoneIcon fontSize="small" color="disabled" />

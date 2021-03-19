@@ -10,6 +10,7 @@ import SignIn from './components/SignIn';
 import db from './firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import UserName from './components/UserName';
 
 const useStyles = makeStyles(() => ({
 	root: {
@@ -92,6 +93,9 @@ function App() {
 							</Route>
 							<Route path="/signin">
 								<SignIn />
+							</Route>
+							<Route path="/username">
+								<UserName />
 							</Route>
 							<Route path="/">
 								<Landing />
