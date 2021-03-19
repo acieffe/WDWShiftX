@@ -34,9 +34,9 @@ function ShiftDay(props) {
 	return (
 		<div>
 			{nums.map((value) => {
-				// Cycles through the next 14 days
 				return (
-					<div className={classes.root}>
+					// Cycles through the next 14 days
+					<div className={classes.root} key={value.toString()}>
 						<Accordion defaultExpanded="true">
 							<AccordionSummary
 								expandIcon={<ExpandMoreIcon />}

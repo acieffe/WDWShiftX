@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import EditShiftBtn from './EditShiftBtn';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
@@ -115,7 +114,7 @@ function ShiftList(props) {
 						<div className={classes.root}>
 							<Accordion key={shift.id}>
 								<AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-									<Typography className={classes.heading}>
+									<div className={classes.heading}>
 										<div className={classes.time}>
 											{postTime(shift.start)} - {postTime(shift.end)}
 										</div>
@@ -129,19 +128,19 @@ function ShiftList(props) {
 												}}
 											/>
 										</div>
-									</Typography>
+									</div>
 								</AccordionSummary>
 								<AccordionDetails style={{ borderTop: '1px solid rgba(0,0,0,0.25' }}>
-									<Typography className={classes.details}>
+									<div className={classes.details}>
 										<div className={classes.information}>
-											<h3 className={classes.detailTop}>Comments:</h3>
-											<h5>Duration: {timeDiff(shift.start, shift.end)} hours</h5>
+											<div className={classes.detailTop}>Comments:</div>
+											<div className={classes.duration}>Duration: {timeDiff(shift.start, shift.end)} hours</div>
 										</div>
-										<p className={classes.comments}>{shift.comments}</p>
+										<div className={classes.comments}>{shift.comments}</div>
 										<div className={classes.owner}>
-											<h4>~{shift.user}</h4>
+											<div className={classes.userName}>~{shift.user}</div>
 											<div className={classes.contacting}>
-												<h4 className={classes.contact}>Contact Me:</h4>
+												<div className={classes.contact}>Contact Me:</div>
 												<PhoneIcon fontSize="small" color="disabled" />
 											</div>
 										</div>
@@ -152,7 +151,7 @@ function ShiftList(props) {
 												<Chip variant="outlined" size="small" label={keyword} />
 											))}
 										</div>
-									</Typography>
+									</div>
 								</AccordionDetails>
 							</Accordion>
 						</div>
