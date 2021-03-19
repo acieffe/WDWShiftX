@@ -15,9 +15,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Tags(props) {
-	// const [setValue] = React.useState(null); // need for later values
-	// const [open, toggleOpen] = React.useState(false);
+function Keywords(props) {
 	const classes = useStyles();
 
 	return (
@@ -27,16 +25,17 @@ export default function Tags(props) {
 				clearOnBlur
 				handleHomeEndKeys
 				multiple
-				id="tags-outlined"
+				id="keywords"
+				name="keywords"
 				options={props.keywords.map((option) => option.keyword)}
 				// This is where the User Default Keywords will show up
-				defaultValue={['1900 Park Fare']}
+				defaultValue={['1900 Park Fare', 'Accents']}
 				freeSolo
 				renderTags={(value, getTagProps) => value.map((option, index) => <Chip variant="outlined" label={option} {...getTagProps({ index })} />)}
-				renderInput={(params) => (
-					<TextField {...params} variant="outlined" label="Filter Shifts by Keywords" placeholder="Roles, Locations, Etc." />
-				)}
+				renderInput={(params) => <TextField {...params} variant="outlined" label="Keywords" placeholder="Roles, Locations, Etc." />}
 			/>
 		</div>
 	);
 }
+
+export default Keywords;

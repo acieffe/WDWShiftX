@@ -15,7 +15,7 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
 	paper: {
 		position: 'absolute',
-		width: 450,
+		width: 'minContent',
 		backgroundColor: theme.palette.background.paper,
 		borderRadius: '20px',
 		boxShadow: theme.shadows[5],
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function SimpleModal(props) {
+function AddShift(props) {
 	const classes = useStyles();
 	// getModalStyle is not a pure function, we roll the style only on the first render
 	const [modalStyle] = React.useState(getModalStyle);
@@ -66,3 +66,5 @@ export default function SimpleModal(props) {
 		</div>
 	);
 }
+
+export default AddShift;

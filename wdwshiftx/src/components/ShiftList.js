@@ -103,12 +103,12 @@ function timeDiff(time1, time2) {
 }
 
 // Template for Shifts with mapping through each shift that are in the next 2 weeks
-export default function SimpleAccordion(props) {
+function ShiftList(props) {
 	const classes = useStyles();
 	const d = new Date();
 
 	return (
-		<shiftList>
+		<div>
 			{props.shifts.map((shift) => {
 				if (shift.start.getDate() === d.getDate() + props.date) {
 					return (
@@ -161,6 +161,8 @@ export default function SimpleAccordion(props) {
 					return '';
 				}
 			})}
-		</shiftList>
+		</div>
 	);
 }
+
+export default ShiftList;

@@ -1,17 +1,38 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Shift from './components/Shifts';
-import NewShift from './components/NewShift';
+import Shifts from './components/Shifts';
 import Header from './components/Header';
-import styled from 'styled-components';
 import Ads from './components/Ads';
 import Landing from './components/Landing';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import db from './firebase';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+
+const useStyles = makeStyles(() => ({
+	root: {
+		width: '100%',
+		height: '100vh',
+	},
+	body: {
+		display: 'grid',
+		gridTemplateRows: '38px auto',
+	},
+	main: {},
+	adsContainer: {
+		position: 'fixed',
+		bottom: '0px',
+		width: '100%',
+		backgroundColor: 'pink',
+		boxShadow: '0px -2px 5px',
+		zIndex: '50',
+	},
+}));
 
 function App() {
+	const classes = useStyles();
 	const [shifts, setShifts] = useState([]);
 
 	const getShifts = () => {
@@ -44,6 +65,7 @@ function App() {
 					snapshot.docs.map((doc) => {
 						return {
 							keyword: doc.data().keyword,
+							slug: doc.data().slug,
 						};
 					})
 				);
@@ -56,17 +78,14 @@ function App() {
 	}, []);
 
 	return (
-		<div className="App">
+		<div className={classes.root}>
 			<Router>
-				<Container>
+				<div className={classes.body}>
 					<Header />
-					<Main>
+					<Container className={classes.main} maxWidth="sm">
 						<Switch>
 							<Route path="/shifts">
-								<Shift shifts={shifts} keywords={keywords} />
-							</Route>
-							<Route path="/newshift">
-								<NewShift />
+								<Shifts shifts={shifts} keywords={keywords} />
 							</Route>
 							<Route path="/signup">
 								<SignUp />
@@ -78,34 +97,14 @@ function App() {
 								<Landing />
 							</Route>
 						</Switch>
-					</Main>
-				</Container>
-				<AdsContainer>
+					</Container>
+				</div>
+				<div className={classes.adsContainer}>
 					<Ads />
-				</AdsContainer>
+				</div>
 			</Router>
 		</div>
 	);
 }
 
 export default App;
-
-const Container = styled.div`
-	width: 100%;
-	height: 100vh;
-	display: grid;
-	grid-template-rows: 38px auto;
-`;
-
-const Main = styled.div`
-	margin: 0 auto;
-`;
-
-const AdsContainer = styled.div`
-	width: 100%;
-	background-color: pink;
-	box-shadow: 0px -2px 5px;
-	position: fixed;
-	bottom: 0px;
-	z-index: 50;
-`;

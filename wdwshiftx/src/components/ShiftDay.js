@@ -27,16 +27,16 @@ function postDate(i) {
 }
 
 // Template for Shifts with mapping through each shift that are in the next 2 weeks
-export default function SimpleAccordion(props) {
+function ShiftDay(props) {
 	const classes = useStyles();
 	const nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]; // 2 weeks of days
 
 	return (
-		<shiftItems>
+		<div>
 			{nums.map((value) => {
 				// Cycles through the next 14 days
 				return (
-					<div className={classes.root} key={value.toString()}>
+					<div className={classes.root}>
 						<Accordion defaultExpanded="true">
 							<AccordionSummary
 								expandIcon={<ExpandMoreIcon />}
@@ -53,6 +53,8 @@ export default function SimpleAccordion(props) {
 					</div>
 				);
 			})}
-		</shiftItems>
+		</div>
 	);
 }
+
+export default ShiftDay;

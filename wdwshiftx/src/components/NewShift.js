@@ -1,31 +1,32 @@
 import React from 'react';
-import styled from 'styled-components';
+import { makeStyles } from '@material-ui/core/styles';
 import NewShiftInput from './NewShiftInput';
 
+const useStyles = makeStyles(() => ({
+	container: {
+		display: 'grid',
+		gridTemplateRows: 'minContent auto',
+		textAlign: 'center',
+	},
+	title: {
+		fontStyle: 'italic',
+	},
+	formContainer: {
+		margin: '0 auto',
+	},
+}));
+
 function NewShift(props) {
+	const classes = useStyles();
+
 	return (
-		<Container>
-			<Title>Add Shift:</Title>
-			<FormContainer>
+		<div className={classes.container}>
+			<h1 className={classes.title}>Add Shift:</h1>
+			<div className={classes.formContainer}>
 				<NewShiftInput keywords={props.keywords} />
-			</FormContainer>
-		</Container>
+			</div>
+		</div>
 	);
 }
 
 export default NewShift;
-
-const Container = styled.div`
-	display: grid;
-	grid-template-rows: min-content auto;
-	text-align: center;
-`;
-
-const Title = styled.h1`
-	font-style: italic;
-`;
-
-const FormContainer = styled.div`
-	width: 450px;
-	margin: 0 auto;
-`;
