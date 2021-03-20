@@ -30,10 +30,10 @@ function Shifts(props) {
 		<div className={classes.shiftsContainer}>
 			<div className={classes.titleHeader}>
 				<h1 className={classes.title}>Available Shifts</h1>
-				<AddShift keywords={props.keywords} />
+				<AddShift />
 			</div>
-			<Keywords keywords={props.keywords} />
-			<ShiftDay shifts={props.shifts} keywords={props.keywords} />
+			<Keywords />
+			<ShiftDay shifts={props.shifts} />
 		</div>
 	);
 }

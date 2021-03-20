@@ -57,7 +57,7 @@ function EditShiftBtn(props) {
 
 	const body = (
 		<div style={modalStyle} className={classes.paper}>
-			<EditShift keywords={props.keywords} />
+			<EditShift />
 		</div>
 	);
 

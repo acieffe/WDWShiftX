@@ -23,7 +23,7 @@ function NewShift(props) {
 		<div className={classes.container}>
 			<h1 className={classes.title}>Add Shift:</h1>
 			<div className={classes.formContainer}>
-				<NewShiftInput keywords={props.keywords} />
+				<NewShiftInput />
 			</div>
 		</div>
 	);

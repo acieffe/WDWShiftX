@@ -23,7 +23,7 @@ function EditShift(props) {
 		<div className={classes.container}>
 			<h1 className={classes.title}>Edit Shift:</h1>
 			<div className={classes.formContainer}>
-				<EditShiftInput keywords={props.keywords} />
+				<EditShiftInput />
 			</div>
 		</div>
 	);

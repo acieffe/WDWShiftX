@@ -56,26 +56,8 @@ function App() {
 			});
 	};
 
-	const [keywords, setKeywords] = useState([]);
-
-	const getKeywords = () => {
-		db.collection('keywords')
-			.orderBy('slug', 'asc')
-			.onSnapshot((snapshot) => {
-				setKeywords(
-					snapshot.docs.map((doc) => {
-						return {
-							keyword: doc.data().keyword,
-							slug: doc.data().slug,
-						};
-					})
-				);
-			});
-	};
-
 	useEffect(() => {
 		getShifts();
-		getKeywords();
 	}, []);
 
 	return (
@@ -86,7 +68,7 @@ function App() {
 					<Container className={classes.main} maxWidth="sm">
 						<Switch>
 							<Route path="/shifts">
-								<Shifts shifts={shifts} keywords={keywords} />
+								<Shifts shifts={shifts} />
 							</Route>
 							<Route path="/signup">
 								<SignUp />

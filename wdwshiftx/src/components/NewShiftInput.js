@@ -105,7 +105,7 @@ function NewShiftInput(props) {
 					fullWidth
 				/>
 			</div>
-			<Keywords keywords={props.keywords} />
+			<Keywords />
 			<div className={classes.btn}>
 				<Button variant="contained" color="primary">
 					Add Shift

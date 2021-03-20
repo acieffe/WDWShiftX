@@ -1,15 +1,9 @@
-/* eslint-disable no-use-before-define */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
-
-const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
-const checkedIcon = <CheckBoxIcon fontSize="small" />;
+import db from '../firebase';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -21,36 +15,48 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Keywords(props) {
+function Keywords() {
 	const classes = useStyles();
+	const [keywords, setKeywords] = useState([]);
 
-	const allWords = props.keywords.map((fart) => fart.keyword);
-	console.log(allWords[0]);
+	const getKeywords = () => {
+		db.collection('keywords')
+			.orderBy('slug', 'asc')
+			.onSnapshot((snapshot) => {
+				setKeywords(
+					snapshot.docs.map((doc) => {
+						return {
+							keyword: doc.data().keyword,
+							slug: doc.data().slug,
+						};
+					})
+				);
+			});
+	};
+
+	useEffect(() => {
+		getKeywords();
+	}, []);
+
+	console.log(keywords[0]);
+
+	const userOptions = [keywords[6]];
+	const [value, setValue] = React.useState([...userOptions, keywords[13]]);
 
 	return (
 		<div className={classes.root}>
+			Hi
 			<Autocomplete
-				selectOnFocus
-				clearOnBlur
-				handleHomeEndKeys
-				disableCloseOnSelect
 				multiple
-				id="keywords"
-				name="keywords"
-				options={props.keywords}
-				// options={props.keywords.map((option) => option.keyword)}
-				// This is where the User Default Keywords will show up
-				// defaultValue={[]}
-				// defaultValue={['1900 Park Fare', 'Accents']}
+				id="fixed-tags-demo"
+				value={value}
+				onChange={(event, newValue) => {
+					setValue([...newValue]);
+				}}
+				options={keywords}
 				getOptionLabel={(option) => option.keyword}
-				renderOption={(option, { selected }) => (
-					<React.Fragment>
-						<Checkbox icon={icon} checkedIcon={checkedIcon} style={{ marginRight: 8 }} checked={selected} />
-						{option.title}
-					</React.Fragment>
-				)}
 				freeSolo
-				renderTags={(value, getTagProps) => value.map((option, index) => <Chip variant="outlined" label={option} {...getTagProps({ index })} />)}
+				renderTags={(tagValue, getTagProps) => tagValue.map((option, index) => <Chip label={option.keyword} {...getTagProps({ index })} />)}
 				renderInput={(params) => <TextField {...params} variant="outlined" label="Keywords" placeholder="Roles, Locations, Etc." />}
 			/>
 		</div>
