@@ -5,9 +5,8 @@ import Shifts from './components/Shifts';
 import Header from './components/Header';
 import Ads from './components/Ads';
 import Landing from './components/Landing';
-import SignUp from './components/SignUp';
-import SignIn from './components/SignIn';
-import db from './firebase';
+import Login from './components/Login';
+import db, { auth } from './firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import UserName from './components/UserName';
@@ -35,6 +34,8 @@ const useStyles = makeStyles(() => ({
 function App() {
 	const classes = useStyles();
 	const [shifts, setShifts] = useState([]);
+	const [keywords, setKeywords] = useState([]);
+	const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
 	const getShifts = () => {
 		db.collection('shifts')
@@ -56,33 +57,54 @@ function App() {
 			});
 	};
 
+	const getKeywords = () => {
+		db.collection('keywords')
+			.orderBy('slug', 'asc')
+			.onSnapshot((snapshot) => {
+				setKeywords(
+					snapshot.docs.map((doc) => {
+						return {
+							keyword: doc.data().keyword,
+							slug: doc.data().slug,
+						};
+					})
+				);
+			});
+	};
+
+	const signOut = () => {
+		auth.signOut().then(() => {
+			localStorage.removeItem('user');
+			setUser(null);
+		});
+	};
+
 	useEffect(() => {
 		getShifts();
+		getKeywords();
 	}, []);
 
 	return (
 		<div className={classes.root}>
 			<Router>
 				<div className={classes.body}>
-					<Header />
+					<Header signOut={signOut} user={user} />
 					<Container className={classes.main} maxWidth="sm">
-						<Switch>
-							<Route path="/shifts">
-								<Shifts shifts={shifts} />
-							</Route>
-							<Route path="/signup">
-								<SignUp />
-							</Route>
-							<Route path="/signin">
-								<SignIn />
-							</Route>
-							<Route path="/username">
-								<UserName />
-							</Route>
-							<Route path="/">
-								<Landing />
-							</Route>
-						</Switch>
+						{!user ? (
+							<Login setUser={setUser} />
+						) : (
+							<Switch>
+								<Route path="/shifts">
+									<Shifts shifts={shifts} keywords={keywords} />
+								</Route>
+								<Route path="/username">
+									<UserName />
+								</Route>
+								<Route path="/">
+									<Landing />
+								</Route>
+							</Switch>
+						)}
 					</Container>
 				</div>
 				<div className={classes.adsContainer}>

@@ -102,6 +102,11 @@ function timeDiff(time1, time2) {
 	return (d2hours * 60 + d2minutes - (d1hours * 60 + d1minutes)) / 60;
 }
 
+function hasKeywords(keys) {
+	const localKeywords = ['MK Main St', 'Fargo', 'Banana', 'Magic Kingdom (MK)'];
+	return localKeywords.some((k) => keys.indexOf(k) >= 0);
+}
+
 // Template for Shifts with mapping through each shift that are in the next 2 weeks
 function ShiftList(props) {
 	const classes = useStyles();
@@ -110,7 +115,7 @@ function ShiftList(props) {
 	return (
 		<div>
 			{props.shifts.map((shift) => {
-				if (shift.start.getDate() === d.getDate() + props.date) {
+				if (shift.start.getDate() === d.getDate() + props.date && hasKeywords(shift.keywords)) {
 					return (
 						<div className={classes.root}>
 							<Accordion key={shift.id}>

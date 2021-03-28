@@ -1,66 +1,50 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import SignIn from './SignIn';
+import { auth, provider } from '../firebase';
+import Logo from './Logo';
+import Button from '@material-ui/core/Button';
 
-function getModalStyle() {
-	return {
-		top: `50%`,
-		left: `50%`,
-		transform: `translate(-50%, -50%)`,
-	};
-}
-
-const useStyles = makeStyles((theme) => ({
-	paper: {
-		position: 'absolute',
-		width: 450,
-		backgroundColor: theme.palette.background.paper,
-		borderRadius: '20px',
-		boxShadow: theme.shadows[5],
-		padding: theme.spacing(2, 4, 3),
-		'&:not(:hover)': {
-			outline: 'none',
-		},
-		'&:hover': {
-			outline: 'none',
-		},
-	},
-	openModal: {
+const useStyles = makeStyles(() => ({
+	container: {
+		height: '100vh',
 		display: 'flex',
-		cursor: 'pointer',
+		justifyContent: 'center',
 		alignItems: 'center',
+		flexDirection: 'column',
+	},
+	links: {
+		cursor: 'pointer',
+		textAlign: 'center',
 	},
 }));
 
-function Login() {
+function Login(props) {
 	const classes = useStyles();
-	// getModalStyle is not a pure function, we roll the style only on the first render
-	const [modalStyle] = React.useState(getModalStyle);
-	const [open, setOpen] = React.useState(false);
 
-	const handleOpen = () => {
-		setOpen(true);
+	const signIn = () => {
+		auth
+			.signInWithPopup(provider)
+			.then((result) => {
+				const newUser = {
+					name: result.user.displayName,
+					photo: result.user.photoURL,
+				};
+				localStorage.setItem('user', JSON.stringify(newUser));
+				props.setUser(newUser);
+			})
+			.catch((e) => {
+				console.log(e.message);
+			});
 	};
-
-	const handleClose = () => {
-		setOpen(false);
-	};
-
-	const body = (
-		<div style={modalStyle} className={classes.paper}>
-			<SignIn />
-		</div>
-	);
 
 	return (
-		<div>
-			<div className={classes.openModal} onClick={handleOpen}>
-				Login
+		<div className={classes.container}>
+			<Logo />
+			<div className={classes.links} onClick={signIn}>
+				<Button variant="contained" color="primary">
+					Login or Register
+				</Button>
 			</div>
-			<Modal open={open} onClose={handleClose} aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description">
-				{body}
-			</Modal>
 		</div>
 	);
 }

@@ -1,7 +1,5 @@
 import React from 'react';
 import Logo from './Logo';
-import Login from './Login';
-import Register from './Register';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,6 +17,20 @@ const useStyles = makeStyles((theme) => ({
 	logoArea: {
 		marginLeft: '5px',
 	},
+	links: {
+		padding: '0 8px',
+		textAlign: 'right',
+		flex: '1',
+		fontSize: '1.5em',
+		fontFamily: 'Philosopher',
+	},
+	link: {
+		padding: '2px 5px 4px',
+		textDecoration: 'none',
+		'&:hover': {
+			backgroundColor: 'orange',
+		},
+	},
 	userContainer: {
 		display: 'flex',
 		alignItems: 'center',
@@ -27,6 +39,10 @@ const useStyles = makeStyles((theme) => ({
 	loginPrompt: {
 		display: 'flex',
 		paddingRight: '16px',
+	},
+	userLoggedIn: {
+		display: 'flex',
+		alignItems: 'center',
 	},
 	userName: {
 		display: 'flex',
@@ -37,10 +53,11 @@ const useStyles = makeStyles((theme) => ({
 		height: '28px',
 		border: '2px solid white',
 		borderRadius: '3px',
+		cursor: 'pointer',
 	},
 }));
 
-function Header() {
+function Header({ user, signOut }) {
 	const classes = useStyles();
 
 	return (
@@ -48,19 +65,26 @@ function Header() {
 			<div className={classes.logoArea}>
 				<Logo />
 			</div>
+			<div className={classes.links}>
+				<a href="/shifts" className={classes.link}>
+					Shifts
+				</a>
+			</div>
 			<div className={classes.userContainer}>
-				{true ? (
-					<div className={classes.loginPrompt}>
-						<Login />
-						&nbsp;
-						<Register />
+				{!user ? (
+					<div className={classes.links}>
+						<a href="/login" className={classes.link}>
+							Login Or Register
+						</a>
 					</div>
 				) : (
-					<div className={classes.userName}>Hello User</div>
+					<div className={classes.userLoggedIn}>
+						<div className={classes.userName}>Hello {user.name}</div>
+						<div className={classes.userImg} onClick={signOut}>
+							<img src={user.photo ? user.photo : 'https://i.imgur.com/6VBx3io.png'} alt="" width="100%" />
+						</div>
+					</div>
 				)}
-				<div className={classes.userImg}>
-					<img src="https://i.imgur.com/6VBx3io.png" alt="" width="100%" />
-				</div>
 			</div>
 		</div>
 	);
