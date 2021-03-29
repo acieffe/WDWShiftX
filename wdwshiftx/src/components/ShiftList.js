@@ -103,8 +103,21 @@ function timeDiff(time1, time2) {
 }
 
 function hasKeywords(keys) {
-	const localKeywords = ['MK Main St', 'Fargo', 'Banana', 'Magic Kingdom (MK)'];
-	return localKeywords.some((k) => keys.indexOf(k) >= 0);
+	let localKeywords = [''];
+	let result = false;
+	if (JSON.parse(localStorage.getItem('localKeywords'))) {
+		let localKeywords = [JSON.parse(localStorage.getItem('localKeywords'))];
+		console.log(localKeywords);
+	}
+	if (localKeywords.length >= 1) {
+		console.log(localKeywords.some((k) => keys.indexOf(k) >= 0));
+		//localKeywords = ['Fargo', 'Banana', 'Magic Kingdom (MK)'];
+		result = localKeywords.some((k) => keys.indexOf(k) >= 0);
+	} else {
+		console.log(keys.includes(localKeywords));
+		result = keys.includes(localKeywords);
+	}
+	return result;
 }
 
 // Template for Shifts with mapping through each shift that are in the next 2 weeks

@@ -74,6 +74,7 @@ function App() {
 	const signOut = () => {
 		auth.signOut().then(() => {
 			localStorage.removeItem('user');
+			localStorage.removeItem('localKeywords');
 			setUser(null);
 		});
 	};
