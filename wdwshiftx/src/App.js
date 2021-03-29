@@ -9,7 +9,6 @@ import Login from './components/Login';
 import db, { auth } from './firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import UserName from './components/UserName';
 
 const useStyles = makeStyles(() => ({
 	root: {
@@ -95,10 +94,7 @@ function App() {
 						) : (
 							<Switch>
 								<Route path="/shifts">
-									<Shifts shifts={shifts} keywords={keywords} />
-								</Route>
-								<Route path="/username">
-									<UserName />
+									<Shifts shifts={shifts} getKeywords={getKeywords} keywords={keywords} />
 								</Route>
 								<Route path="/">
 									<Landing />

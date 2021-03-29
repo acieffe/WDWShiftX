@@ -108,32 +108,36 @@ function hasKeywords(keys) {
 }
 
 // Template for Shifts with mapping through each shift that are in the next 2 weeks
-function ShiftList(props) {
+function ShiftList({ shifts, date, keywords }) {
 	const classes = useStyles();
 	const d = new Date();
 
 	return (
 		<div>
-			{props.shifts.map((shift) => {
-				if (shift.start.getDate() === d.getDate() + props.date && hasKeywords(shift.keywords)) {
+			{shifts.map((shift) => {
+				if (shift.start.getDate() === d.getDate() + date && hasKeywords(shift.keywords)) {
 					return (
-						<div className={classes.root}>
-							<Accordion key={shift.id}>
+						<div className={classes.root} key={shift.id}>
+							<Accordion>
 								<AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
 									<div className={classes.heading}>
 										<div className={classes.time}>
 											{postTime(shift.start)} - {postTime(shift.end)}
 										</div>
 										<div className={classes.shiftName}>{shift.shiftName}</div>
-										<div className={classes.editDelete}>
-											<EditShiftBtn />
-											<DeleteForeverIcon
-												className={classes.delete}
-												onClick={(event) => {
-													event.stopPropagation();
-												}}
-											/>
-										</div>
+										{true ? (
+											<div className={classes.editDelete}>
+												<EditShiftBtn keywords={keywords} />
+												<DeleteForeverIcon
+													className={classes.delete}
+													onClick={(event) => {
+														event.stopPropagation();
+													}}
+												/>
+											</div>
+										) : (
+											''
+										)}
 									</div>
 								</AccordionSummary>
 								<AccordionDetails style={{ borderTop: '1px solid rgba(0,0,0,0.25' }}>
@@ -145,7 +149,7 @@ function ShiftList(props) {
 										<div className={classes.comments}>{shift.comments}</div>
 										<div className={classes.owner}>
 											<div className={classes.userName}>
-												<UserName shifts={props.shifts} />
+												<UserName shifts={shifts} />
 											</div>
 											<div className={classes.contacting}>
 												<div className={classes.contact}>Contact Me:</div>
@@ -154,7 +158,7 @@ function ShiftList(props) {
 										</div>
 										<Divider className={classes.divide} />
 										<div className={classes.keywordChips}>
-											Keywords: <Chip variant="outlined" size="small" label={shift.shiftName} />
+											Keywords:{' '}
 											{shift.keywords.map((keyword) => (
 												<Chip variant="outlined" size="small" label={keyword} />
 											))}

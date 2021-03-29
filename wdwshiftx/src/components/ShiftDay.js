@@ -27,7 +27,7 @@ function postDate(i) {
 }
 
 // Template for Shifts with mapping through each shift that are in the next 2 weeks
-function ShiftDay(props) {
+function ShiftDay({ shifts, keywords }) {
 	const classes = useStyles();
 	const nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]; // 2 weeks of days
 
@@ -47,7 +47,7 @@ function ShiftDay(props) {
 								<div className={classes.days}>{postDate(value)}</div>
 							</AccordionSummary>
 							<AccordionDetails>
-								<ShiftList shifts={props.shifts} date={value} />
+								<ShiftList shifts={shifts} date={value} keywords={keywords} />
 							</AccordionDetails>
 						</Accordion>
 					</div>

@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
-function Shifts({ shifts, keywords }) {
+function Shifts({ shifts, getKeywords, keywords }) {
 	const classes = useStyles();
 
 	return (
@@ -32,7 +32,7 @@ function Shifts({ shifts, keywords }) {
 				<h1 className={classes.title}>Available Shifts</h1>
 				<AddShift keywords={keywords} />
 			</div>
-			<Keywords keywords={keywords} />
+			<Keywords getKeywords={getKeywords} keywords={keywords} />
 			<ShiftDay shifts={shifts} keywords={keywords} />
 		</div>
 	);

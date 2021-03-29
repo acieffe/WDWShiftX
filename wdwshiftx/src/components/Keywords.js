@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
@@ -31,7 +31,7 @@ function Keywords({ keywords }) {
 	//console.log(keywords[0]);
 
 	const userOptions = [keywords[6]];
-	const [value, setValue] = React.useState([...userOptions, keywords[13]]);
+	const [value, setValue] = useState([...userOptions, keywords[13]]);
 
 	return (
 		<div className={classes.root}>

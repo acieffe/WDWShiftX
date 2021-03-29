@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function NewShiftInput(props) {
+function NewShiftInput({ keywords }) {
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(false);
 	const handleTooltipClose = () => {
@@ -105,7 +105,7 @@ function NewShiftInput(props) {
 					fullWidth
 				/>
 			</div>
-			<Keywords />
+			<Keywords keywords={keywords} />
 			<div className={classes.btn}>
 				<Button variant="contained" color="primary">
 					Add Shift

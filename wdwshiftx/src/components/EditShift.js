@@ -16,14 +16,14 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
-function EditShift(props) {
+function EditShift({ keywords }) {
 	const classes = useStyles();
 
 	return (
 		<div className={classes.container}>
 			<h1 className={classes.title}>Edit Shift:</h1>
 			<div className={classes.formContainer}>
-				<EditShiftInput />
+				<EditShiftInput keywords={keywords} />
 			</div>
 		</div>
 	);
