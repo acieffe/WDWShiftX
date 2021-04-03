@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
 	form: {
 		display: 'flex',
 		width: '100%',
-		border: '1px solid blue',
-		borderRadius: '5px',
+		border: '2px solid #303F9F',
+		borderRadius: '10px',
 	},
 	naked: {
 		flex: '1',

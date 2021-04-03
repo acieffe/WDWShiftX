@@ -6,9 +6,10 @@ import Header from './components/Header';
 import Ads from './components/Ads';
 import Landing from './components/Landing';
 import Login from './components/Login';
-import db, { auth } from './firebase';
+import { auth } from './firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { ShiftItems } from '../src/data/ShiftData';
 
 const useStyles = makeStyles(() => ({
 	root: {
@@ -19,7 +20,9 @@ const useStyles = makeStyles(() => ({
 		display: 'grid',
 		gridTemplateRows: '38px auto',
 	},
-	main: {},
+	main: {
+		margin: '50px auto 100px',
+	},
 	adsContainer: {
 		position: 'fixed',
 		bottom: '0px',
@@ -33,42 +36,23 @@ const useStyles = makeStyles(() => ({
 function App() {
 	const classes = useStyles();
 	const [shifts, setShifts] = useState([]);
-	const [keywords, setKeywords] = useState([]);
 	const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
 	const getShifts = () => {
-		db.collection('shifts')
-			.orderBy('start', 'asc')
-			.onSnapshot((snapshot) => {
-				setShifts(
-					snapshot.docs.map((doc) => {
-						return {
-							id: doc.id,
-							shiftName: doc.data().shiftName,
-							start: new Date(doc.data().start * 1000),
-							end: new Date(doc.data().end * 1000),
-							user: doc.data().user,
-							comments: doc.data().comments,
-							keywords: doc.data().keywords,
-						};
-					})
-				);
-			});
-	};
-
-	const getKeywords = () => {
-		db.collection('keywords')
-			.orderBy('slug', 'asc')
-			.onSnapshot((snapshot) => {
-				setKeywords(
-					snapshot.docs.map((doc) => {
-						return {
-							keyword: doc.data().keyword,
-							slug: doc.data().slug,
-						};
-					})
-				);
-			});
+		setShifts(
+			ShiftItems.map((doc) => {
+				return {
+					id: doc.id,
+					shiftName: doc.shiftName,
+					start: new Date(doc.start),
+					end: new Date(doc.end),
+					role: doc.role,
+					location: doc.location,
+					user: doc.user,
+					comments: doc.comments,
+				};
+			})
+		);
 	};
 
 	const signOut = () => {
@@ -81,7 +65,6 @@ function App() {
 
 	useEffect(() => {
 		getShifts();
-		getKeywords();
 	}, []);
 
 	return (
@@ -95,7 +78,7 @@ function App() {
 						) : (
 							<Switch>
 								<Route path="/shifts">
-									<Shifts shifts={shifts} getKeywords={getKeywords} keywords={keywords} />
+									<Shifts shifts={shifts} />
 								</Route>
 								<Route path="/">
 									<Landing />

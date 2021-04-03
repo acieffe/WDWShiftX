@@ -7,7 +7,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ShiftList from './ShiftList';
 
 const useStyles = makeStyles((theme) => ({
-	root: {
+	dayRoot: {
 		width: '100%',
 		margin: '0 auto 5px',
 	},
@@ -36,7 +36,7 @@ function ShiftDay({ shifts, keywords }) {
 			{nums.map((value) => {
 				return (
 					// Cycles through the next 14 days
-					<div className={classes.root} key={value.toString()}>
+					<div className={classes.dayRoot} key={value.toString()}>
 						<Accordion defaultExpanded="true">
 							<AccordionSummary
 								expandIcon={<ExpandMoreIcon />}
@@ -46,8 +46,8 @@ function ShiftDay({ shifts, keywords }) {
 							>
 								<div className={classes.days}>{postDate(value)}</div>
 							</AccordionSummary>
-							<AccordionDetails>
-								<ShiftList shifts={shifts} date={value} keywords={keywords} />
+							<AccordionDetails className={classes.accordianDetails}>
+								<ShiftList className={classes.shiftList} shifts={shifts} date={value} />
 							</AccordionDetails>
 						</Accordion>
 					</div>

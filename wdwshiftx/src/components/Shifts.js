@@ -9,7 +9,6 @@ const useStyles = makeStyles(() => ({
 		display: 'grid',
 		gridTemplateRows: 'minContent auto',
 		textAlign: 'center',
-		margin: '40px 0 100px',
 		padding: '0 10px 100px',
 	},
 	titleHeader: {

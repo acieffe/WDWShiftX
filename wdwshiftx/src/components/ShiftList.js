@@ -6,16 +6,20 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import EditShiftBtn from './EditShiftBtn';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import Divider from '@material-ui/core/Divider';
-import Chip from '@material-ui/core/Chip';
 import PhoneIcon from '@material-ui/icons/Phone';
 import UserName from './UserName';
+import Tooltip from '@material-ui/core/Tooltip';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
-const useStyles = makeStyles((theme) => ({
-	root: {
+const useStyles = makeStyles(() => ({
+	shiftList: {
 		width: '100%',
-		margin: '0 auto 5px',
 	},
+	root: {},
+	accordian: {
+		borderRadius: '5px',
+	},
+	accordianSummary: {},
 	heading: {
 		display: 'flex',
 		fontSize: '1.25em',
@@ -30,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 	editDelete: {
 		display: 'flex',
 		position: 'absolute',
-		right: '50px',
+		right: '40px',
 		flex: '1',
 		alignItems: 'baseline',
 	},
@@ -42,20 +46,24 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	details: {
-		width: '100%',
 		textAlign: 'left',
+		width: '100%',
 	},
 	information: {
 		display: 'flex',
+		flex: '1',
 		alignItems: 'baseline',
 		justifyContent: 'spaceBetween',
 	},
 	detailTop: {
 		flex: '1',
+		paddingBottom: '5px',
 	},
 	comments: {
 		font: 'normal smaller Montserrat ',
 		paddingBottom: '8px',
+		flex: '1',
+		width: '100%',
 	},
 	owner: {
 		display: 'flex',
@@ -68,18 +76,17 @@ const useStyles = makeStyles((theme) => ({
 	contact: {
 		marginRight: '5px',
 	},
+	phone: {
+		'&:hover': {
+			color: 'black',
+		},
+	},
 	divide: {
 		margin: '8px 0px',
 	},
-	keywordChips: {
-		paddingTop: '5px',
-		display: 'flex',
-		justifyContent: 'left',
-		alignItems: 'center',
-		flexWrap: 'wrap',
-		'& > *': {
-			margin: theme.spacing(0.5),
-		},
+	contactText: {
+		fontSize: '20px',
+		fontFamily: 'Philospher',
 	},
 }));
 
@@ -109,9 +116,8 @@ function hasKeywords(keys) {
 		let localKeywords = [JSON.parse(localStorage.getItem('localKeywords'))];
 		console.log(localKeywords);
 	}
-	if (localKeywords.length >= 1) {
+	if (localKeywords.length > 1) {
 		console.log(localKeywords.some((k) => keys.indexOf(k) >= 0));
-		//localKeywords = ['Fargo', 'Banana', 'Magic Kingdom (MK)'];
 		result = localKeywords.some((k) => keys.indexOf(k) >= 0);
 	} else {
 		console.log(keys.includes(localKeywords));
@@ -121,18 +127,31 @@ function hasKeywords(keys) {
 }
 
 // Template for Shifts with mapping through each shift that are in the next 2 weeks
-function ShiftList({ shifts, date, keywords }) {
+function ShiftList({ shifts, date }) {
 	const classes = useStyles();
 	const d = new Date();
+	const [open, setOpen] = React.useState(false);
+	const handleTooltipClose = () => {
+		setOpen(false);
+	};
+
+	const handleTooltipOpen = () => {
+		setOpen(true);
+	};
 
 	return (
-		<div>
+		<div className={classes.shiftList}>
 			{shifts.map((shift) => {
-				if (shift.start.getDate() === d.getDate() + date && hasKeywords(shift.keywords)) {
+				if (shift.start.getDate() === d.getDate() + date) {
 					return (
 						<div className={classes.root} key={shift.id}>
-							<Accordion>
-								<AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+							<Accordion className={classes.accordian}>
+								<AccordionSummary
+									expandIcon={<ExpandMoreIcon />}
+									aria-controls="panel1a-content"
+									id="panel1a-header"
+									className={classes.accordianSummary}
+								>
 									<div className={classes.heading}>
 										<div className={classes.time}>
 											{postTime(shift.start)} - {postTime(shift.end)}
@@ -140,7 +159,7 @@ function ShiftList({ shifts, date, keywords }) {
 										<div className={classes.shiftName}>{shift.shiftName}</div>
 										{true ? (
 											<div className={classes.editDelete}>
-												<EditShiftBtn keywords={keywords} />
+												<EditShiftBtn shift={shift} />
 												<DeleteForeverIcon
 													className={classes.delete}
 													onClick={(event) => {
@@ -166,15 +185,24 @@ function ShiftList({ shifts, date, keywords }) {
 											</div>
 											<div className={classes.contacting}>
 												<div className={classes.contact}>Contact Me:</div>
-												<PhoneIcon fontSize="small" color="disabled" />
+												<ClickAwayListener onClickAway={handleTooltipClose}>
+													<div>
+														<Tooltip
+															PopperProps={{
+																disablePortal: true,
+															}}
+															onClose={handleTooltipClose}
+															open={open}
+															disableFocusListener
+															disableHoverListener
+															disableTouchListener
+															title={<span className={classes.contactText}>Text: (208) 557-9223</span>}
+														>
+															<PhoneIcon fontSize="small" color="disabled" className={classes.phone} onClick={handleTooltipOpen} />
+														</Tooltip>
+													</div>
+												</ClickAwayListener>
 											</div>
-										</div>
-										<Divider className={classes.divide} />
-										<div className={classes.keywordChips}>
-											Keywords:{' '}
-											{shift.keywords.map((keyword) => (
-												<Chip variant="outlined" size="small" label={keyword} />
-											))}
 										</div>
 									</div>
 								</AccordionDetails>
