@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -42,13 +42,14 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function UserName(props) {
+function UserName({ username }) {
 	const classes = useStyles();
+	const [user] = useState(JSON.parse(localStorage.getItem('user')));
 
 	return (
 		<div className={classes.root}>
 			{/*  This is where a dot will appear if the user listed is online */}
-			{false ? (
+			{username === user.name ? (
 				<StyledBadge
 					overlap="circle"
 					anchorOrigin={{
@@ -57,12 +58,12 @@ function UserName(props) {
 					}}
 					variant="dot"
 				>
-					<Avatar alt="Remy Sharp" src="https://i.imgur.com/6VBx3io.png" />
+					<Avatar alt={user.name} src={user.photo ? user.photo : 'https://i.imgur.com/6VBx3io.png'} />
 				</StyledBadge>
 			) : (
-				<Avatar alt="Remy Sharp" src="https://i.imgur.com/6VBx3io.png" />
+				<Avatar alt={user.name} src={user.photo ? user.photo : 'https://i.imgur.com/6VBx3io.png'} />
 			)}
-			<div className={classes.userName}>{props.shifts[0].user}</div>
+			<div className={classes.userName}>{user.name}</div>
 		</div>
 	);
 }

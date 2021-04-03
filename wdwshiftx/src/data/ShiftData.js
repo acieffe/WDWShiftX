@@ -6,7 +6,7 @@ export const ShiftItems = [
 		role: `PhotoPass Photographer (DPI)`,
 		location: `Magic Kingdom (MK)`,
 		shiftName: 'MK Main St',
-		user: 'Ace Baugh',
+		user: 'AceBaugh',
 		comments:
 			'I need this shift to be gone, not traded, GONE! I need this shift to be gone, not traded, GONE! I need this shift to be gone, not traded, GONE!',
 	},
@@ -17,7 +17,7 @@ export const ShiftItems = [
 		role: `PhotoPass Photographer (DPI)`,
 		location: `Epcot (EP)`,
 		shiftName: 'EP Future World',
-		user: 'Ace Baugh',
+		user: 'Matt Baugh',
 		comments: 'I found a fart, ',
 	},
 	{
@@ -37,7 +37,7 @@ export const ShiftItems = [
 		role: `Attractions`,
 		location: `Magic Kingdom (MK)`,
 		shiftName: 'MK Main St',
-		user: 'Ace Baugh',
+		user: 'Matt Baugh',
 		comments: 'I need this shift to be gone, not traded, GONE!',
 	},
 	{
@@ -47,7 +47,7 @@ export const ShiftItems = [
 		role: `Merchandise`,
 		location: `Magic Kingdom (MK)`,
 		shiftName: 'MK Main St',
-		user: 'Ace Baugh',
+		user: 'Matt Baugh',
 		comments: 'I need this shift to be gone, not traded, GONE!',
 	},
 	{
@@ -68,7 +68,7 @@ export const ShiftItems = [
 		role: `PhotoPass Photographer (DPI)`,
 		location: `Epcot (EP)`,
 		shiftName: 'EP Future World',
-		user: 'Ace Baugh',
+		user: 'Matt Baugh',
 		comments: 'I found a fart, ',
 	},
 	{
@@ -78,7 +78,7 @@ export const ShiftItems = [
 		role: `PhotoPass Photographer (DPI)`,
 		location: `Disney's Hollywood Studios (HS)`,
 		shiftName: `HS Galaxy's Edge`,
-		user: 'Ace Baugh',
+		user: 'Matt Baugh',
 		comments: 'I need this shift to be gone, not traded, GONE!',
 	},
 	{
@@ -88,7 +88,7 @@ export const ShiftItems = [
 		role: `Attractions`,
 		location: `Magic Kingdom (MK)`,
 		shiftName: 'MK Main St',
-		user: 'Ace Baugh',
+		user: 'Matt Baugh',
 		comments: 'I need this shift to be gone, not traded, GONE!',
 	},
 	{
@@ -98,7 +98,7 @@ export const ShiftItems = [
 		role: `Merchandise`,
 		location: `Magic Kingdom (MK)`,
 		shiftName: 'MK Main St',
-		user: 'Ace Baugh',
+		user: 'Matt Baugh',
 		comments: 'I need this shift to be gone, not traded, GONE!',
 	},
 ];

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -135,8 +135,9 @@ function timeDiff(time1, time2) {
 // Template for Shifts with mapping through each shift that are in the next 2 weeks
 function ShiftList({ shifts, date }) {
 	const classes = useStyles();
+	const [user] = useState(JSON.parse(localStorage.getItem('user')));
 	const d = new Date();
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
 	const handleTooltipClose = () => {
 		setOpen(false);
 	};
@@ -163,7 +164,7 @@ function ShiftList({ shifts, date }) {
 											{postTime(shift.start)} - {postTime(shift.end)}
 										</div>
 										<div className={classes.shiftName}>{shift.shiftName}</div>
-										{true ? (
+										{shift.user === user.name ? (
 											<div className={classes.editDelete}>
 												<EditShiftBtn shift={shift} />
 												<DeleteForeverIcon
@@ -187,7 +188,7 @@ function ShiftList({ shifts, date }) {
 										<div className={classes.comments}>{shift.comments}</div>
 										<div className={classes.owner}>
 											<div className={classes.userName}>
-												<UserName shifts={shifts} />
+												<UserName username={shift.user} />
 											</div>
 											<div className={classes.contacting}>
 												<div className={classes.contact}>Contact Me:</div>
