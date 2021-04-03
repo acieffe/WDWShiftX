@@ -1,7 +1,6 @@
 import React from 'react';
 import ShiftDay from './ShiftDay';
 import AddShift from './AddShift';
-import Keywords from './Keywords';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
@@ -22,17 +21,16 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
-function Shifts({ shifts, getKeywords, keywords }) {
+function Shifts({ shifts }) {
 	const classes = useStyles();
 
 	return (
 		<div className={classes.shiftsContainer}>
 			<div className={classes.titleHeader}>
 				<h1 className={classes.title}>Available Shifts</h1>
-				<AddShift keywords={keywords} />
+				<AddShift />
 			</div>
-			<Keywords getKeywords={getKeywords} keywords={keywords} />
-			<ShiftDay shifts={shifts} keywords={keywords} />
+			<ShiftDay shifts={shifts} />
 		</div>
 	);
 }

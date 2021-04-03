@@ -18,6 +18,7 @@ const useStyles = makeStyles(() => ({
 	root: {},
 	accordian: {
 		borderRadius: '5px',
+		marginBottom: '8px',
 	},
 	accordianSummary: {},
 	heading: {
@@ -51,7 +52,6 @@ const useStyles = makeStyles(() => ({
 	},
 	information: {
 		display: 'flex',
-		flex: '1',
 		alignItems: 'baseline',
 		justifyContent: 'spaceBetween',
 	},
@@ -106,25 +106,31 @@ function timeDiff(time1, time2) {
 	var d2 = new Date(time2);
 	const d2minutes = d2.getMinutes();
 	const d2hours = d2.getHours();
-	return (d2hours * 60 + d2minutes - (d1hours * 60 + d1minutes)) / 60;
+	let difference = 0;
+	if (d1.getDate() !== d2.getDate()) {
+		difference = ((d2hours + 24 * (d2.getDate() - d1.getDate())) * 60 + d2minutes - (d1hours * 60 + d1minutes)) / 60;
+	} else {
+		difference = (d2hours * 60 + d2minutes - (d1hours * 60 + d1minutes)) / 60;
+	}
+	return difference;
 }
 
-function hasKeywords(keys) {
-	let localKeywords = [''];
-	let result = false;
-	if (JSON.parse(localStorage.getItem('localKeywords'))) {
-		let localKeywords = [JSON.parse(localStorage.getItem('localKeywords'))];
-		console.log(localKeywords);
-	}
-	if (localKeywords.length > 1) {
-		console.log(localKeywords.some((k) => keys.indexOf(k) >= 0));
-		result = localKeywords.some((k) => keys.indexOf(k) >= 0);
-	} else {
-		console.log(keys.includes(localKeywords));
-		result = keys.includes(localKeywords);
-	}
-	return result;
-}
+// function hasKeywords(keys) {
+// 	let localKeywords = [''];
+// 	let result = false;
+// 	if (JSON.parse(localStorage.getItem('localKeywords'))) {
+// 		let localKeywords = [JSON.parse(localStorage.getItem('localKeywords'))];
+// 		console.log(localKeywords);
+// 	}
+// 	if (localKeywords.length > 1) {
+// 		console.log(localKeywords.some((k) => keys.indexOf(k) >= 0));
+// 		result = localKeywords.some((k) => keys.indexOf(k) >= 0);
+// 	} else {
+// 		console.log(keys.includes(localKeywords));
+// 		result = keys.includes(localKeywords);
+// 	}
+// 	return result;
+// }
 
 // Template for Shifts with mapping through each shift that are in the next 2 weeks
 function ShiftList({ shifts, date }) {
