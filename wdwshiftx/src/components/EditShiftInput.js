@@ -186,7 +186,6 @@ function EditShiftInput({ shift }) {
 					</div>
 				</div>
 			</div>
-			{/*<Keywords keywords={keywords} />*/}
 			<div className={classes.btn}>
 				<Button variant="contained" color="primary" type="submit">
 					Edit Shift

@@ -16,14 +16,14 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
-function NewShift({ keywords }) {
+function NewShift() {
 	const classes = useStyles();
 
 	return (
 		<div className={classes.container}>
 			<h1 className={classes.title}>Add Shift:</h1>
 			<div className={classes.formContainer}>
-				<NewShiftInput keywords={keywords} />
+				<NewShiftInput />
 			</div>
 		</div>
 	);

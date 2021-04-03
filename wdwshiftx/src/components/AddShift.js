@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function AddShift({ keywords }) {
+function AddShift() {
 	const classes = useStyles();
 	// getModalStyle is not a pure function, we roll the style only on the first render
 	const [modalStyle] = React.useState(getModalStyle);
@@ -50,7 +50,7 @@ function AddShift({ keywords }) {
 
 	const body = (
 		<div style={modalStyle} className={classes.paper}>
-			<NewShift keywords={keywords} />
+			<NewShift />
 		</div>
 	);
 

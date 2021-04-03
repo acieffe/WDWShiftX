@@ -57,7 +57,7 @@ export const ShiftItems = [
 		role: `PhotoPass Photographer (DPI)`,
 		location: `Magic Kingdom (MK)`,
 		shiftName: 'MK Main St',
-		user: 'Ace Baugh',
+		user: 'Matt Baugh',
 		comments:
 			'I need this shift to be gone, not traded, GONE! I need this shift to be gone, not traded, GONE! I need this shift to be gone, not traded, GONE!',
 	},
