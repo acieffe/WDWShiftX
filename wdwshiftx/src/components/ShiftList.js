@@ -20,17 +20,27 @@ const useStyles = makeStyles(() => ({
 		borderRadius: '5px',
 		marginBottom: '8px',
 	},
-	accordianSummary: {},
+	accordianSummaryTrade: {
+		background: 'rgba(255, 0, 0, 0.25)',
+	},
+	accordianSummaryGive: {
+		background: 'rgba(0, 255, 0, 0.25)',
+	},
+	accordianSummaryEither: {
+		background: 'rgba(0, 0, 255, 0.25)',
+	},
 	heading: {
 		display: 'flex',
 		fontSize: '1.25em',
 		flex: '1',
+		alignItems: 'baseline',
 	},
 	time: {
 		width: '6em',
 	},
 	shiftName: {
-		paddingLeft: '9px',
+		paddingLeft: '3px',
+		fontSize: '.75em',
 	},
 	editDelete: {
 		display: 'flex',
@@ -157,7 +167,13 @@ function ShiftList({ shifts, date }) {
 									expandIcon={<ExpandMoreIcon />}
 									aria-controls="panel1a-content"
 									id="panel1a-header"
-									className={classes.accordianSummary}
+									className={`${
+										shift.giveTrade === 'Give'
+											? classes.accordianSummaryGive
+											: shift.giveTrade === 'Trade'
+											? classes.accordianSummaryTrade
+											: classes.accordianSummaryEither
+									}`}
 								>
 									<div className={classes.heading}>
 										<div className={classes.time}>

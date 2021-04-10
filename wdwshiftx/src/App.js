@@ -44,6 +44,7 @@ function App() {
 				return {
 					id: doc.id,
 					shiftName: doc.shiftName,
+					giveTrade: doc.giveTrade,
 					start: new Date(doc.start),
 					end: new Date(doc.end),
 					role: doc.role,
