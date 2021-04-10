@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 		marginLeft: '8px',
 		fontSize: '1em',
 	},
-	commentSection: {
+	addInfoSection: {
 		display: 'flex',
 		alignItems: 'baseline',
 	},
@@ -153,8 +153,8 @@ function NewShiftInput() {
 							fullWidth
 						/>
 					</div>
-					<div className={classes.commentSection}>
-						<span>Comments: </span>
+					<div className={classes.addInfoSection}>
+						<span>Additional Information: </span>
 						<ClickAwayListener onClickAway={handleTooltipClose}>
 							<div>
 								<Tooltip
@@ -181,9 +181,9 @@ function NewShiftInput() {
 					<div className={classes.where}>
 						<InputBase
 							className={classes.naked}
-							id="comments"
-							name="comments"
-							placeholder="Comments: Additional Information"
+							id="addInfo"
+							name="addInfo"
+							placeholder="Additional Information"
 							inputProps={{ 'aria-label': 'naked' }}
 							required
 							multiline

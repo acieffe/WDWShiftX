@@ -75,7 +75,7 @@ const useStyles = makeStyles(() => ({
 		flex: '1',
 		paddingBottom: '5px',
 	},
-	comments: {
+	addInfo: {
 		font: 'normal smaller Montserrat ',
 		paddingBottom: '8px',
 		flex: '1',
@@ -190,10 +190,10 @@ function ShiftList({ shifts, date }) {
 								<AccordionDetails className={classes.accordianDetails}>
 									<div className={classes.details}>
 										<div className={classes.information}>
-											<div className={classes.detailTop}>Comments:</div>
+											<div className={classes.detailTop}>Additional Information:</div>
 											<div className={classes.duration}>Duration: {timeDiff(shift.start, shift.end)} hours</div>
 										</div>
-										<div className={classes.comments}>{shift.comments}</div>
+										<div className={classes.addInfo}>{shift.addInfo}</div>
 										<div className={classes.owner}>
 											<div className={classes.userName}>
 												<UserName username={shift.user} />

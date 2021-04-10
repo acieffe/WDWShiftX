@@ -83,7 +83,7 @@ function Shifts() {
 					role: doc.role,
 					location: doc.location,
 					user: doc.user,
-					comments: doc.comments,
+					addInfo: doc.addInfo,
 				};
 			})
 		);

@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 		marginLeft: '8px',
 		fontSize: '1em',
 	},
-	commentSection: {
+	addInfoSection: {
 		display: 'flex',
 		alignItems: 'baseline',
 	},
@@ -169,8 +169,8 @@ function EditShiftInput({ shift }) {
 							value={shift.shiftName}
 						/>
 					</div>
-					<div className={classes.commentSection}>
-						<span>Comments: </span>
+					<div className={classes.addInfoSection}>
+						<span>Additional Information: </span>
 						<ClickAwayListener onClickAway={handleTooltipClose}>
 							<div>
 								<Tooltip
@@ -197,14 +197,14 @@ function EditShiftInput({ shift }) {
 					<div className={classes.where}>
 						<InputBase
 							className={classes.naked}
-							id="comments"
-							name="comments"
-							placeholder="Comments: Additional Information"
+							id="addInfo"
+							name="addInfo"
+							placeholder="Additional Information"
 							inputProps={{ 'aria-label': 'naked' }}
 							required
 							multiline
 							fullWidth
-							value={shift.comments}
+							value={shift.addInfo}
 						/>
 					</div>
 					<div className={classes.giveTrade}>
