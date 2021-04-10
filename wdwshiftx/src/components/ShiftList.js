@@ -20,27 +20,30 @@ const useStyles = makeStyles(() => ({
 		borderRadius: '5px',
 		marginBottom: '8px',
 	},
-	accordianSummaryTrade: {
-		background: 'rgba(255, 0, 0, 0.25)',
+	summary: {
+		paddingLeft: '10px',
 	},
-	accordianSummaryGive: {
-		background: 'rgba(0, 255, 0, 0.25)',
+	trade: {
+		background: 'linear-gradient(90deg, rgba(255, 0, 0, 0.25) 0%, rgba(255,0 ,0,0.25) 2%, rgba(255,255,255,1) 2%)',
 	},
-	accordianSummaryEither: {
-		background: 'rgba(0, 0, 255, 0.25)',
+	give: {
+		background: 'linear-gradient(90deg, rgba(0, 255, 0, 0.25) 0%, rgba(0, 255,0,0.25) 2%, rgba(255,255,255,1) 2%)',
+	},
+	either: {
+		background: 'linear-gradient(90deg, rgba(0, 0, 255, 0.25) 0%, rgba(0 ,0, 255,0.25) 2%, rgba(255,255,255,1) 2%)',
 	},
 	heading: {
 		display: 'flex',
-		fontSize: '1.25em',
 		flex: '1',
 		alignItems: 'baseline',
 	},
 	time: {
-		width: '6em',
+		fontSize: '1.25em',
+		textAlign: 'left',
 	},
 	shiftName: {
-		paddingLeft: '3px',
-		fontSize: '.75em',
+		paddingLeft: '6px',
+		fontSize: '1em',
 	},
 	editDelete: {
 		display: 'flex',
@@ -125,51 +128,12 @@ function timeDiff(time1, time2) {
 	return difference;
 }
 
-function allFilters(shift, date) {
-	let resull = false;
-	if (isDate(shift, date) && hasKeywords(shift) && isShiftType(shift.giveTrade)) {
-		resull = true;
-	}
-	return resull;
-}
-
 function isDate(shift, date) {
 	const d = new Date();
 	let result = false;
 	if (shift.start.getDate() === d.getDate() + date) {
 		result = true;
 	}
-	return result;
-}
-
-function hasKeywords(shift) {
-	let localKeywords = [''];
-	let result = false;
-
-	if (shift.shiftName === shift.shiftName) {
-		result = true;
-	}
-	// 	if (JSON.parse(localStorage.getItem('localKeywords'))) {
-	// 		let localKeywords = [JSON.parse(localStorage.getItem('localKeywords'))];
-	// 		console.log(localKeywords);
-	// 	}
-	// 	if (localKeywords.length > 1) {
-	// 		console.log(localKeywords.some((k) => keys.indexOf(k) >= 0));
-	// 		result = localKeywords.some((k) => keys.indexOf(k) >= 0);
-	// 	} else {
-	// 		console.log(keys.includes(localKeywords));
-	// 		result = keys.includes(localKeywords);
-	// 	}
-	return result;
-}
-
-function isShiftType(shiftType) {
-	let result = false;
-
-	if (shiftType === shiftType) {
-		result = true;
-	}
-
 	return result;
 }
 
@@ -189,7 +153,7 @@ function ShiftList({ shifts, date }) {
 	return (
 		<div className={classes.shiftList}>
 			{shifts.map((shift) => {
-				if (allFilters(shift, date)) {
+				if (isDate(shift, date)) {
 					return (
 						<div className={classes.root} key={shift.id}>
 							<Accordion className={classes.accordian}>
@@ -197,12 +161,8 @@ function ShiftList({ shifts, date }) {
 									expandIcon={<ExpandMoreIcon />}
 									aria-controls="panel1a-content"
 									id="panel1a-header"
-									className={`${
-										shift.giveTrade === 'Give'
-											? classes.accordianSummaryGive
-											: shift.giveTrade === 'Trade'
-											? classes.accordianSummaryTrade
-											: classes.accordianSummaryEither
+									className={`${classes.summary} ${
+										shift.giveTrade === 'Give' ? classes.give : shift.giveTrade === 'Trade' ? classes.trade : classes.either
 									}`}
 								>
 									<div className={classes.heading}>

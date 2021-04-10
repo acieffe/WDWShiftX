@@ -7,7 +7,7 @@ export const ShiftItems = [
 		location: `Magic Kingdom (MK)`,
 		shiftName: 'MK Main St',
 		giveTrade: 'Trade',
-		user: 'AceBaugh',
+		user: 'Ace Baugh',
 		comments:
 			'I need this shift to be gone, not traded, GONE! I need this shift to be gone, not traded, GONE! I need this shift to be gone, not traded, GONE!',
 	},

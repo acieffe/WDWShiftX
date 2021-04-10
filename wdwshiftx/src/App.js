@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Shifts from './components/Shifts';
 import Header from './components/Header';
@@ -9,7 +9,6 @@ import Login from './components/Login';
 import { auth } from './firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { ShiftItems } from '../src/data/ShiftData';
 
 const useStyles = makeStyles(() => ({
 	root: {
@@ -35,26 +34,7 @@ const useStyles = makeStyles(() => ({
 
 function App() {
 	const classes = useStyles();
-	const [shifts, setShifts] = useState([]);
 	const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
-
-	const getShifts = () => {
-		setShifts(
-			ShiftItems.map((doc) => {
-				return {
-					id: doc.id,
-					shiftName: doc.shiftName,
-					giveTrade: doc.giveTrade,
-					start: new Date(doc.start),
-					end: new Date(doc.end),
-					role: doc.role,
-					location: doc.location,
-					user: doc.user,
-					comments: doc.comments,
-				};
-			})
-		);
-	};
 
 	const signOut = () => {
 		auth.signOut().then(() => {
@@ -63,10 +43,6 @@ function App() {
 			setUser(null);
 		});
 	};
-
-	useEffect(() => {
-		getShifts();
-	}, []);
 
 	return (
 		<div className={classes.root}>
@@ -79,7 +55,7 @@ function App() {
 						) : (
 							<Switch>
 								<Route path="/shifts">
-									<Shifts shifts={shifts} />
+									<Shifts />
 								</Route>
 								<Route path="/">
 									<Landing />
