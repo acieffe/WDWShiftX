@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
 	shiftList: {
 		width: '100%',
 	},
-	root: {},
+	root: { marginBottom: '8px' },
 	accordian: {
 		borderRadius: '5px',
 		marginBottom: '8px',
@@ -58,6 +58,9 @@ const useStyles = makeStyles(() => ({
 		'&:hover': {
 			color: 'black',
 		},
+	},
+	accordianDetails: {
+		borderTop: '1px solid rgba(0,0,0,0.25)',
 	},
 	details: {
 		textAlign: 'left',
@@ -184,7 +187,7 @@ function ShiftList({ shifts, date }) {
 										)}
 									</div>
 								</AccordionSummary>
-								<AccordionDetails style={{ borderTop: '1px solid rgba(0,0,0,0.25)' }}>
+								<AccordionDetails className={classes.accordianDetails}>
 									<div className={classes.details}>
 										<div className={classes.information}>
 											<div className={classes.detailTop}>Comments:</div>
