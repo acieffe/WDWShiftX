@@ -99,7 +99,6 @@ const useStyles = makeStyles(() => ({
 	},
 	contactText: {
 		fontSize: '20px',
-		fontFamily: 'Philospher',
 	},
 }));
 
@@ -185,7 +184,7 @@ function ShiftList({ shifts, date }) {
 										)}
 									</div>
 								</AccordionSummary>
-								<AccordionDetails style={{ borderTop: '1px solid rgba(0,0,0,0.25' }}>
+								<AccordionDetails style={{ borderTop: '1px solid rgba(0,0,0,0.25)' }}>
 									<div className={classes.details}>
 										<div className={classes.information}>
 											<div className={classes.detailTop}>Comments:</div>

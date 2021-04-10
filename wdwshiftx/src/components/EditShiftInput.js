@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 	naked: {
 		flex: '1',
 		marginLeft: '8px',
-		fontFamily: 'Philosopher',
 		fontSize: '1em',
 	},
 	commentSection: {

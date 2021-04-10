@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
 		textAlign: 'right',
 		flex: '1',
 		fontSize: '1.5em',
-		fontFamily: 'Philosopher',
 	},
 	link: {
 		padding: '2px 5px 4px',

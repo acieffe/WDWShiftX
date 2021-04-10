@@ -6,6 +6,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import InfoIcon from '@material-ui/icons/Info';
 import InputBase from '@material-ui/core/InputBase';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -37,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
 	naked: {
 		flex: '1',
 		marginLeft: '8px',
-		fontFamily: 'Philosopher',
 		fontSize: '1em',
 	},
 	commentSection: {
@@ -54,7 +56,16 @@ const useStyles = makeStyles((theme) => ({
 	},
 	infoText: {
 		fontSize: '20px',
-		fontFamily: 'Philospher',
+	},
+	giveTrade: {},
+	radioLabel: {
+		color: 'black',
+	},
+	radios: {
+		display: 'flex',
+	},
+	radio: {
+		flex: '1',
 	},
 }));
 
@@ -117,9 +128,6 @@ function NewShiftInput() {
 							required
 							fullWidth
 						/>
-						<Button variant="contained" color="primary">
-							Next
-						</Button>
 					</div>
 					Location:
 					<div className={classes.where}>
@@ -132,9 +140,6 @@ function NewShiftInput() {
 							required
 							fullWidth
 						/>
-						<Button variant="contained" color="primary">
-							Next
-						</Button>
 					</div>
 					Shift Name:
 					<div className={classes.where}>
@@ -184,6 +189,25 @@ function NewShiftInput() {
 							multiline
 							fullWidth
 						/>
+					</div>
+					<div className={classes.giveTrade}>
+						<RadioGroup row aria-label="giveTrade" name="giveTrade" defaultValue="Either" className={classes.radios} required>
+							<FormControlLabel className={classes.radio} value="Give" control={<Radio color="primary" />} label="Give" labelPlacement="top" />
+							<FormControlLabel
+								className={classes.radio}
+								value="Trade"
+								control={<Radio color="primary" />}
+								label="Trade"
+								labelPlacement="top"
+							/>
+							<FormControlLabel
+								className={classes.radio}
+								value="Either"
+								control={<Radio color="primary" />}
+								label="Either"
+								labelPlacement="top"
+							/>
+						</RadioGroup>
 					</div>
 				</div>
 			</div>

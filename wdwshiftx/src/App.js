@@ -9,6 +9,14 @@ import Login from './components/Login';
 import { auth } from './firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = createMuiTheme({
+	typography: {
+		fontFamily: ['Philosopher', 'sans-serif'].join(','),
+	},
+});
 
 const useStyles = makeStyles(() => ({
 	root: {
@@ -45,30 +53,32 @@ function App() {
 	};
 
 	return (
-		<div className={classes.root}>
-			<Router>
-				<div className={classes.body}>
-					<Header signOut={signOut} user={user} />
-					<Container className={classes.main} maxWidth="sm">
-						{!user ? (
-							<Login setUser={setUser} />
-						) : (
-							<Switch>
-								<Route path="/shifts">
-									<Shifts />
-								</Route>
-								<Route path="/">
-									<Landing />
-								</Route>
-							</Switch>
-						)}
-					</Container>
-				</div>
-				<div className={classes.adsContainer}>
-					<Ads />
-				</div>
-			</Router>
-		</div>
+		<ThemeProvider theme={theme}>
+			<div className={classes.root}>
+				<Router>
+					<div className={classes.body}>
+						<Header signOut={signOut} user={user} />
+						<Container className={classes.main} maxWidth="sm">
+							{!user ? (
+								<Login setUser={setUser} />
+							) : (
+								<Switch>
+									<Route path="/shifts">
+										<Shifts />
+									</Route>
+									<Route path="/">
+										<Landing />
+									</Route>
+								</Switch>
+							)}
+						</Container>
+					</div>
+					<div className={classes.adsContainer}>
+						<Ads />
+					</div>
+				</Router>
+			</div>
+		</ThemeProvider>
 	);
 }
 
