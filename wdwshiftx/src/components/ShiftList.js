@@ -125,28 +125,58 @@ function timeDiff(time1, time2) {
 	return difference;
 }
 
-// function hasKeywords(keys) {
-// 	let localKeywords = [''];
-// 	let result = false;
-// 	if (JSON.parse(localStorage.getItem('localKeywords'))) {
-// 		let localKeywords = [JSON.parse(localStorage.getItem('localKeywords'))];
-// 		console.log(localKeywords);
-// 	}
-// 	if (localKeywords.length > 1) {
-// 		console.log(localKeywords.some((k) => keys.indexOf(k) >= 0));
-// 		result = localKeywords.some((k) => keys.indexOf(k) >= 0);
-// 	} else {
-// 		console.log(keys.includes(localKeywords));
-// 		result = keys.includes(localKeywords);
-// 	}
-// 	return result;
-// }
+function allFilters(shift, date) {
+	let resull = false;
+	if (isDate(shift, date) && hasKeywords(shift) && isShiftType(shift.giveTrade)) {
+		resull = true;
+	}
+	return resull;
+}
+
+function isDate(shift, date) {
+	const d = new Date();
+	let result = false;
+	if (shift.start.getDate() === d.getDate() + date) {
+		result = true;
+	}
+	return result;
+}
+
+function hasKeywords(shift) {
+	let localKeywords = [''];
+	let result = false;
+
+	if (shift.shiftName === shift.shiftName) {
+		result = true;
+	}
+	// 	if (JSON.parse(localStorage.getItem('localKeywords'))) {
+	// 		let localKeywords = [JSON.parse(localStorage.getItem('localKeywords'))];
+	// 		console.log(localKeywords);
+	// 	}
+	// 	if (localKeywords.length > 1) {
+	// 		console.log(localKeywords.some((k) => keys.indexOf(k) >= 0));
+	// 		result = localKeywords.some((k) => keys.indexOf(k) >= 0);
+	// 	} else {
+	// 		console.log(keys.includes(localKeywords));
+	// 		result = keys.includes(localKeywords);
+	// 	}
+	return result;
+}
+
+function isShiftType(shiftType) {
+	let result = false;
+
+	if (shiftType === shiftType) {
+		result = true;
+	}
+
+	return result;
+}
 
 // Template for Shifts with mapping through each shift that are in the next 2 weeks
 function ShiftList({ shifts, date }) {
 	const classes = useStyles();
 	const [user] = useState(JSON.parse(localStorage.getItem('user')));
-	const d = new Date();
 	const [open, setOpen] = useState(false);
 	const handleTooltipClose = () => {
 		setOpen(false);
@@ -159,7 +189,7 @@ function ShiftList({ shifts, date }) {
 	return (
 		<div className={classes.shiftList}>
 			{shifts.map((shift) => {
-				if (shift.start.getDate() === d.getDate() + date) {
+				if (allFilters(shift, date)) {
 					return (
 						<div className={classes.root} key={shift.id}>
 							<Accordion className={classes.accordian}>

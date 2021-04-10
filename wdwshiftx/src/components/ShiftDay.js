@@ -22,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: '1.25em',
 		fontWeight: 'bolder',
 	},
+	accordianDetails: {
+		margin: '5px',
+		padding: '0',
+	},
 }));
 
 // Gives the date and adds the next 14 days
