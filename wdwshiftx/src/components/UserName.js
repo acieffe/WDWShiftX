@@ -58,12 +58,12 @@ function UserName({ username }) {
 					}}
 					variant="dot"
 				>
-					<Avatar alt={user.name} src={user.photo ? user.photo : 'https://i.imgur.com/6VBx3io.png'} />
+					<Avatar alt={username} src={user.photo ? user.photo : 'https://i.imgur.com/6VBx3io.png'} />
 				</StyledBadge>
 			) : (
-				<Avatar alt={user.name} src={user.photo ? user.photo : 'https://i.imgur.com/6VBx3io.png'} />
+				<Avatar alt={username} src={user.photo ? user.photo : 'https://i.imgur.com/6VBx3io.png'} />
 			)}
-			<div className={classes.userName}>{user.name}</div>
+			<div className={classes.userName}>{username}</div>
 		</div>
 	);
 }

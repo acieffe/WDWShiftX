@@ -1,8 +1,10 @@
+const date = new Date();
+
 export const ShiftItems = [
 	{
 		id: 1,
-		start: Date.parse('14 Apr 2021 06:30:00 GMT-0400'),
-		end: Date.parse('14 Apr 2021 20:45:00 GMT-0400'),
+		start: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate()}` + '/' + `${date.getFullYear()}` + ` 06:30:00 GMT-0400`),
+		end: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate()}` + '/' + `${date.getFullYear()}` + ` 20:45:00 GMT-0400`),
 		role: `PhotoPass Photographer (DPI)`,
 		location: `Magic Kingdom (MK)`,
 		shiftName: 'MK Main St',
@@ -13,8 +15,8 @@ export const ShiftItems = [
 	},
 	{
 		id: 2,
-		start: Date.parse('16Apr 2021 22:15:00 GMT-0400'),
-		end: Date.parse('16 Apr 2021 23:00:00 GMT-0400'),
+		start: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 1}` + '/' + `${date.getFullYear()}` + ` 22:15:00 GMT-0400`),
+		end: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 1}` + '/' + `${date.getFullYear()}` + ` 23:00:00 GMT-0400`),
 		role: `PhotoPass Photographer (DPI)`,
 		location: `Epcot (EP)`,
 		shiftName: 'EP Future World',
@@ -24,8 +26,8 @@ export const ShiftItems = [
 	},
 	{
 		id: 3,
-		start: Date.parse('10 Apr 2021 14:15:00 GMT-0400'),
-		end: Date.parse('10 Apr 2021 20:45:00 GMT-0400'),
+		start: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 1}` + '/' + `${date.getFullYear()}` + ` 14:15:00 GMT-0400`),
+		end: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 1}` + '/' + `${date.getFullYear()}` + ` 20:45:00 GMT-0400`),
 		role: `PhotoPass Photographer (DPI)`,
 		location: `Disney's Hollywood Studios (HS)`,
 		shiftName: `HS Galaxy's Edge`,
@@ -35,8 +37,8 @@ export const ShiftItems = [
 	},
 	{
 		id: 4,
-		start: Date.parse('11 Apr 2021 14:15:00 GMT-0400'),
-		end: Date.parse('11 Apr 2021 20:45:00 GMT-0400'),
+		start: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 3}` + '/' + `${date.getFullYear()}` + ` 14:15:00 GMT-0400`),
+		end: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 3}` + '/' + `${date.getFullYear()}` + ` 20:45:00 GMT-0400`),
 		role: `Attractions`,
 		location: `Magic Kingdom (MK)`,
 		shiftName: 'MK Main St',
@@ -46,8 +48,8 @@ export const ShiftItems = [
 	},
 	{
 		id: 5,
-		start: Date.parse('12 Apr 2021 14:15:00 GMT-0400'),
-		end: Date.parse('12 Apr 2021 20:45:00 GMT-0400'),
+		start: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 4}` + '/' + `${date.getFullYear()}` + ` 14:15:00 GMT-0400`),
+		end: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 4}` + '/' + `${date.getFullYear()}` + ` 20:45:00 GMT-0400`),
 		role: `Merchandise`,
 		location: `Magic Kingdom (MK)`,
 		shiftName: 'MK Main St',
@@ -57,8 +59,8 @@ export const ShiftItems = [
 	},
 	{
 		id: 11,
-		start: Date.parse('14 Apr 2021 06:30:00 GMT-0400'),
-		end: Date.parse('14 Apr 2021 20:45:00 GMT-0400'),
+		start: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 5}` + '/' + `${date.getFullYear()}` + ` 06:30:00 GMT-0400`),
+		end: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 5}` + '/' + `${date.getFullYear()}` + ` 20:45:00 GMT-0400`),
 		role: `PhotoPass Photographer (DPI)`,
 		location: `Magic Kingdom (MK)`,
 		shiftName: 'MK Main St',
@@ -69,8 +71,8 @@ export const ShiftItems = [
 	},
 	{
 		id: 12,
-		start: Date.parse('16Apr 2021 22:15:00 GMT-0400'),
-		end: Date.parse('17 Apr 2021 05:00:00 GMT-0400'),
+		start: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 5}` + '/' + `${date.getFullYear()}` + ` 22:15:00 GMT-0400`),
+		end: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 6}` + '/' + `${date.getFullYear()}` + ` 05:00:00 GMT-0400`),
 		role: `PhotoPass Photographer (DPI)`,
 		location: `Epcot (EP)`,
 		shiftName: 'EP Future World',
@@ -80,8 +82,8 @@ export const ShiftItems = [
 	},
 	{
 		id: 13,
-		start: Date.parse('10 Apr 2021 14:15:00 GMT-0400'),
-		end: Date.parse('10 Apr 2021 20:45:00 GMT-0400'),
+		start: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 9}` + '/' + `${date.getFullYear()}` + ` 14:15:00 GMT-0400`),
+		end: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 9}` + '/' + `${date.getFullYear()}` + ` 20:45:00 GMT-0400`),
 		role: `PhotoPass Photographer (DPI)`,
 		location: `Disney's Hollywood Studios (HS)`,
 		shiftName: `HS Galaxy's Edge`,
@@ -91,8 +93,8 @@ export const ShiftItems = [
 	},
 	{
 		id: 14,
-		start: Date.parse('11 Apr 2021 14:15:00 GMT-0400'),
-		end: Date.parse('13 Apr 2021 20:45:00 GMT-0400'),
+		start: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 12}` + '/' + `${date.getFullYear()}` + ` 14:15:00 GMT-0400`),
+		end: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 12}` + '/' + `${date.getFullYear()}` + ` 20:45:00 GMT-0400`),
 		role: `Attractions`,
 		location: `Magic Kingdom (MK)`,
 		shiftName: 'MK Main St',
@@ -102,8 +104,8 @@ export const ShiftItems = [
 	},
 	{
 		id: 15,
-		start: Date.parse('12 Apr 2021 14:15:00 GMT-0400'),
-		end: Date.parse('12 Apr 2021 20:45:00 GMT-0400'),
+		start: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 13}` + '/' + `${date.getFullYear()}` + ` 14:15:00 GMT-0400`),
+		end: Date.parse(`${date.getMonth() + 1}` + '/' + `${date.getDate() + 13}` + '/' + `${date.getFullYear()}` + ` 20:45:00 GMT-0400`),
 		role: `Merchandise`,
 		location: `Magic Kingdom (MK)`,
 		shiftName: 'MK Main St',
