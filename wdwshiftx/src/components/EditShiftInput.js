@@ -6,6 +6,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import InfoIcon from '@material-ui/icons/Info';
 import InputBase from '@material-ui/core/InputBase';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -44,14 +47,38 @@ const useStyles = makeStyles((theme) => ({
 		alignItems: 'baseline',
 	},
 	commentHelp: {
-		padding: '0',
-		margin: '0 -15px',
+		paddingLeft: '5px',
+		fontSize: '15px',
 		color: 'gray',
 		'&:hover': {
 			color: 'black',
 		},
 	},
+	infoText: {
+		fontSize: '20px',
+	},
+	giveTrade: {},
+	radioLabel: {
+		color: 'black',
+	},
+	radios: {
+		display: 'flex',
+	},
+	radio: {
+		flex: '1',
+	},
 }));
+
+function formatTime(time) {
+	let hours = time.getHours();
+	let minutes = time.getMinutes();
+	let month = time.getMonth() + 1;
+	hours = hours < 10 ? '0' + hours : hours;
+	minutes = minutes < 10 ? '0' + minutes : minutes;
+	month = month < 10 ? '0' + month : month;
+	const strTime = hours + ':' + minutes;
+	return time.getFullYear() + '-' + month + '-' + time.getDate() + 'T' + strTime;
+}
 
 function EditShiftInput({ shift }) {
 	const classes = useStyles();
@@ -81,7 +108,7 @@ function EditShiftInput({ shift }) {
 						variant="outlined"
 						size="small"
 						className={classes.allInput}
-						value={shift.start}
+						value={formatTime(shift.start)}
 					/>
 				</div>
 				<div className={classes.timeInput}>
@@ -97,7 +124,7 @@ function EditShiftInput({ shift }) {
 						variant="outlined"
 						size="small"
 						className={classes.allInput}
-						value={shift.end}
+						value={formatTime(shift.end)}
 					/>
 				</div>
 			</div>
@@ -115,9 +142,6 @@ function EditShiftInput({ shift }) {
 							fullWidth
 							value={shift.role}
 						/>
-						<Button variant="contained" color="primary">
-							Next
-						</Button>
 					</div>
 					Location:
 					<div className={classes.where}>
@@ -131,9 +155,6 @@ function EditShiftInput({ shift }) {
 							fullWidth
 							value={shift.location}
 						/>
-						<Button variant="contained" color="primary">
-							Next
-						</Button>
 					</div>
 					Shift Name:
 					<div className={classes.where}>
@@ -161,11 +182,14 @@ function EditShiftInput({ shift }) {
 									disableFocusListener
 									disableHoverListener
 									disableTouchListener
-									title="In the comments, please be descriptive: Add special training needed, clock in location, overtime, or just a reason why. If this is up for trade, please specify what you are looking to get."
+									title={
+										<span className={classes.infoText}>
+											In the comments, please be descriptive: Add special training needed, clock in location, overtime, or just a reason
+											why. If this is up for trade, please specify what you are looking to get.
+										</span>
+									}
 								>
-									<Button className={classes.commentHelp} onClick={handleTooltipOpen}>
-										<InfoIcon />
-									</Button>
+									<InfoIcon className={classes.commentHelp} onClick={handleTooltipOpen} />
 								</Tooltip>
 							</div>
 						</ClickAwayListener>
@@ -182,6 +206,25 @@ function EditShiftInput({ shift }) {
 							fullWidth
 							value={shift.comments}
 						/>
+					</div>
+					<div className={classes.giveTrade}>
+						<RadioGroup row aria-label="giveTrade" name="giveTrade" defaultValue={shift.giveTrade} className={classes.radios} required>
+							<FormControlLabel className={classes.radio} value="Give" control={<Radio color="primary" />} label="Give" labelPlacement="top" />
+							<FormControlLabel
+								className={classes.radio}
+								value="Trade"
+								control={<Radio color="primary" />}
+								label="Trade"
+								labelPlacement="top"
+							/>
+							<FormControlLabel
+								className={classes.radio}
+								value="Either"
+								control={<Radio color="primary" />}
+								label="Either"
+								labelPlacement="top"
+							/>
+						</RadioGroup>
 					</div>
 				</div>
 			</div>

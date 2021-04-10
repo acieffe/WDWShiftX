@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function EditShiftBtn() {
+function EditShiftBtn({ shift }) {
 	const classes = useStyles();
 	// getModalStyle is not a pure function, we roll the style only on the first render
 	const [modalStyle] = React.useState(getModalStyle);
@@ -57,7 +57,7 @@ function EditShiftBtn() {
 
 	const body = (
 		<div style={modalStyle} className={classes.paper}>
-			<EditShift />
+			<EditShift shift={shift} />
 		</div>
 	);
 
