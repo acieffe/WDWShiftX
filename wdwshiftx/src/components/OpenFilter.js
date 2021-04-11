@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import NewShift from './NewShift';
-import EventIcon from '@material-ui/icons/Event';
+import SortIcon from '@material-ui/icons/Sort';
+import Filters from './Filters';
 
 function getModalStyle() {
 	return {
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function AddShift() {
+function OpenFilter() {
 	const classes = useStyles();
 	// getModalStyle is not a pure function, we roll the style only on the first render
 	const [modalStyle] = React.useState(getModalStyle);
@@ -50,15 +50,15 @@ function AddShift() {
 
 	const body = (
 		<div style={modalStyle} className={classes.paper}>
-			<NewShift />
+			<Filters />
 		</div>
 	);
 
 	return (
 		<div>
 			<div className={classes.openModal} onClick={handleOpen}>
-				<EventIcon />
-				<span>&nbsp;Add A Shift</span>
+				<SortIcon />
+				<span>&nbsp;Filter Shifts</span>
 			</div>
 			<Modal open={open} onClose={handleClose} aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description">
 				{body}
@@ -67,4 +67,4 @@ function AddShift() {
 	);
 }
 
-export default AddShift;
+export default OpenFilter;

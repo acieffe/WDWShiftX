@@ -4,6 +4,7 @@ import AddShift from './AddShift';
 import { makeStyles } from '@material-ui/core/styles';
 import { ShiftItems } from '../data/ShiftData';
 import { useEffect, useState } from 'react';
+import OpenFilter from './OpenFilter';
 
 const useStyles = makeStyles(() => ({
 	shiftsContainer: {
@@ -97,7 +98,10 @@ function Shifts() {
 		<div className={classes.shiftsContainer}>
 			<div className={classes.titleHeader}>
 				<h1 className={classes.title}>Available Shifts</h1>
-				<AddShift />
+				<div className={classes.addOpen}>
+					<AddShift />
+					<OpenFilter />
+				</div>
 			</div>
 			<ShiftDay shifts={shifts} />
 		</div>
